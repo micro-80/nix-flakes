@@ -15,7 +15,7 @@
       system = "x86_64-linux";
       specialArgs = { inherit inputs; };
       modules = [
-        ./configuration.nix
+        ./machines/leon/configuration.nix
 
 	{
 	  nix.nixPath = [ "nixpkgs=${nixpkgs}" ];
