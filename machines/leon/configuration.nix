@@ -109,6 +109,8 @@
 
   services.gnome.gnome-keyring.enable = true;
 
+  environment.pathsToLink = [ "/share/zsh" ];
+
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

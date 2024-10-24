@@ -1,7 +1,10 @@
 { config, pkgs, ... }:
 
 {
-  imports = [ ../common/programs/neovim ];
+  imports = [ 
+    ../common/neovim 
+    ../common/zsh
+  ];
   home.username = "user";
   home.homeDirectory = "/home/user";
 
@@ -32,6 +35,7 @@
     pavucontrol
     seahorse
     unzip
+    vesktop
   ];
 
   programs = {
