@@ -28,6 +28,7 @@
     mako
     
     # misc
+    fastfetch
     pavucontrol
     seahorse
     unzip
@@ -73,6 +74,14 @@
     config = rec {
       modifier =  "Mod4";
       terminal = "alacritty";
+
+      output = {
+        DP-3 = {
+	  # NOTE: uncomment when Sway 1.10 released
+	  #allow_tearing = "yes";
+	  adaptive_sync = "on";
+	};
+      };
     };
     extraSessionCommands = ''
       export SDL_VIDEODRIVER=wayland
