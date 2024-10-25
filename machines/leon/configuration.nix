@@ -16,6 +16,16 @@
   boot.kernelParams = ["quiet" "splash"];
   hardware.cpu.amd.updateMicrocode = true;
 
+  fileSystems."/mnt/Secondary" =
+    { device = "/dev/disk/by-uuid/8c90e68f-97a2-4c14-beae-5336580091a8";
+      fsType = "ext4";
+    };
+
+  fileSystems."/mnt/Others" =
+    { device = "/dev/disk/by-uuid/46f52cad-7ff3-41aa-ae67-f1fd344784b7";
+      fsType = "ext4";
+    };
+
   networking.hostName = "leon"; # Define your hostname.
 
   # Enable networking
@@ -107,6 +117,7 @@
     #jack.enable = true;
   };
 
+  services.gvfs.enable = true;
   services.gnome.gnome-keyring.enable = true;
 
   environment.pathsToLink = [ "/share/zsh" ];
