@@ -92,9 +92,6 @@
         bind-key -n M-) select-window -t 0
       '';
     };
-    zsh = {
-      enable = true;
-    };
   };
 
   gtk = {
