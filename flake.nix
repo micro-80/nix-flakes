@@ -10,22 +10,29 @@
     };
   };
 
-  outputs = inputs@{ nixpkgs, home-manager, ... }: {
+  outputs = inputs @ {
+    nixpkgs,
+    home-manager,
+    ...
+  }: {
+    formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
+
     nixosConfigurations.leon = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      specialArgs = { inherit inputs; };
+      specialArgs = {inherit inputs;};
       modules = [
         ./machines/leon/configuration.nix
 
-	{
-	  nix.nixPath = [ "nixpkgs=${nixpkgs}" ];
-	}
+        {
+          nix.nixPath = ["nixpkgs=${nixpkgs}"];
+        }
 
-	home-manager.nixosModules.home-manager {
-	  home-manager.useGlobalPkgs = true;
-	  home-manager.useUserPackages = true;
-	  home-manager.users.user = import ./home/leon/home.nix;
-	}
+        home-manager.nixosModules.home-manager
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.user = import ./home/leon/home.nix;
+        }
       ];
     };
   };

@@ -1,8 +1,11 @@
-{ config, lib, pkgs, ... }:
-
 {
-  imports = [ 
-    ../common/neovim 
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
+  imports = [
+    ../common/neovim
     ../common/zsh
   ];
   home.username = "user";
@@ -11,15 +14,15 @@
   fonts.fontconfig = {
     enable = true;
     defaultFonts = {
-      monospace = [ "Hack Nerd Font Mono" ];
-      sansSerif = [ "Noto Sans" ];
-      serif = [ "Noto Serif" ];
+      monospace = ["Hack Nerd Font Mono"];
+      sansSerif = ["Noto Sans"];
+      serif = ["Noto Serif"];
     };
   };
 
   home.packages = with pkgs; [
     # fonts
-    (pkgs.nerdfonts.override { fonts = [ "Hack" ]; })
+    (pkgs.nerdfonts.override {fonts = ["Hack"];})
     noto-fonts
     noto-fonts-cjk-sans
     noto-fonts-emoji
@@ -30,7 +33,7 @@
     slurp
     wl-clipboard
     mako
-    
+
     # misc
     evince
     fastfetch
@@ -45,9 +48,9 @@
     alacritty = {
       enable = true;
       settings = {
-        import = [ 
-	  "${pkgs.alacritty-theme}/catppuccin_macchiato.toml"
-	];
+        import = [
+          "${pkgs.alacritty-theme}/catppuccin_macchiato.toml"
+        ];
       };
     };
     git = {
@@ -69,25 +72,25 @@
       plugins = with pkgs; [
         tmuxPlugins.better-mouse-mode
         tmuxPlugins.sensible
-	{
-	  plugin = tmuxPlugins.catppuccin;
-	  extraConfig = "set -g @catppuccin_flavor 'macchiato'";
-	}
+        {
+          plugin = tmuxPlugins.catppuccin;
+          extraConfig = "set -g @catppuccin_flavor 'macchiato'";
+        }
       ];
-    extraConfig = ''
-      set-option -sa terminal-overrides ",alacritty*:Tc"
+      extraConfig = ''
+        set-option -sa terminal-overrides ",alacritty*:Tc"
 
-      bind-key -n M-! select-window -t 1
-      bind-key -n M-@ select-window -t 2
-      bind-key -n M-# select-window -t 3
-      bind-key -n M-$ select-window -t 4
-      bind-key -n M-% select-window -t 5
-      bind-key -n M-^ select-window -t 6
-      bind-key -n M-& select-window -t 7
-      bind-key -n M-* select-window -t 8
-      bind-key -n M-( select-window -t 9
-      bind-key -n M-) select-window -t 0
-    '';
+        bind-key -n M-! select-window -t 1
+        bind-key -n M-@ select-window -t 2
+        bind-key -n M-# select-window -t 3
+        bind-key -n M-$ select-window -t 4
+        bind-key -n M-% select-window -t 5
+        bind-key -n M-^ select-window -t 6
+        bind-key -n M-& select-window -t 7
+        bind-key -n M-* select-window -t 8
+        bind-key -n M-( select-window -t 9
+        bind-key -n M-) select-window -t 0
+      '';
     };
     zsh = {
       enable = true;
@@ -113,40 +116,41 @@
   wayland.windowManager.sway = {
     enable = true;
     config = rec {
-      modifier =  "Mod4";
+      modifier = "Mod4";
       terminal = "alacritty";
 
       startup = [
-        { command = "autotiling-rs"; }
+        {command = "autotiling-rs";}
       ];
       input = {
         "type:pointer" = {
-    		accel_profile = "flat";
-		pointer_accel = "0";
-	};
+          accel_profile = "flat";
+          pointer_accel = "0";
+        };
       };
       output = {
         DP-3 = {
-	  # NOTE: uncomment when Sway 1.10 released
-	  #allow_tearing = "yes";
-	  adaptive_sync = "on";
-	};
+          # NOTE: uncomment when Sway 1.10 released
+          #allow_tearing = "yes";
+          adaptive_sync = "on";
+        };
       };
 
       keybindings = let
-  modifier = config.wayland.windowManager.sway.config.modifier;
-  wireplumber = "${pkgs.wireplumber}/bin/wpctl";
-  playerctl = "${pkgs.playerctl}/bin/playerctl";
-in lib.mkOptionDefault {
-        #"XF86MonBrightnessDown" = "exec 'light -U 15'";
-        #"XF86MonBrightnessUp" = "exec 'light -A 15'";
-        "XF86AudioRaiseVolume" = "exec '${wireplumber} set-volume @DEFAULT_AUDIO_SINK@ 5%+'";
-        "XF86AudioLowerVolume" = "exec '${wireplumber} set-volume @DEFAULT_AUDIO_SINK@ 5%-'";
-        "XF86AudioMute" = "exec '${wireplumber} set-mute @DEFAULT_AUDIO_SINK@ toggle'";
-        "XF86AudioPlay" = "exec '${playerctl} play-pause'";
-        "XF86AudioNext" = "exec '${playerctl} next'";
-        "XF86AudioPrev" = "exec '${playerctl} previous'";
-};
+        modifier = config.wayland.windowManager.sway.config.modifier;
+        wireplumber = "${pkgs.wireplumber}/bin/wpctl";
+        playerctl = "${pkgs.playerctl}/bin/playerctl";
+      in
+        lib.mkOptionDefault {
+          #"XF86MonBrightnessDown" = "exec 'light -U 15'";
+          #"XF86MonBrightnessUp" = "exec 'light -A 15'";
+          "XF86AudioRaiseVolume" = "exec '${wireplumber} set-volume @DEFAULT_AUDIO_SINK@ 5%+'";
+          "XF86AudioLowerVolume" = "exec '${wireplumber} set-volume @DEFAULT_AUDIO_SINK@ 5%-'";
+          "XF86AudioMute" = "exec '${wireplumber} set-mute @DEFAULT_AUDIO_SINK@ toggle'";
+          "XF86AudioPlay" = "exec '${playerctl} play-pause'";
+          "XF86AudioNext" = "exec '${playerctl} next'";
+          "XF86AudioPrev" = "exec '${playerctl} previous'";
+        };
     };
     extraSessionCommands = ''
       export SDL_VIDEODRIVER=wayland

@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   home.packages = with pkgs; [
     python312
   ];
@@ -23,12 +25,12 @@
       {
         name = pkgs.zsh-git-prompt.pname;
         src = pkgs.zsh-git-prompt.src;
-	file = "zshrc.sh";
+        file = "zshrc.sh";
       }
       {
         name = pkgs.zsh-nix-shell.pname;
         src = pkgs.zsh-nix-shell.src;
-	file = "nix-shell.plugin.zsh";
+        file = "nix-shell.plugin.zsh";
       }
     ];
   };
