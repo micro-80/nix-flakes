@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   imports = [ 
@@ -126,6 +126,21 @@
 	  adaptive_sync = "on";
 	};
       };
+
+      keybindings = let
+  modifier = config.wayland.windowManager.sway.config.modifier;
+  wireplumber = "${pkgs.wireplumber}/bin/wpctl";
+  playerctl = "${pkgs.playerctl}/bin/playerctl";
+in lib.mkOptionDefault {
+        #"XF86MonBrightnessDown" = "exec 'light -U 15'";
+        #"XF86MonBrightnessUp" = "exec 'light -A 15'";
+        "XF86AudioRaiseVolume" = "exec '${wireplumber} set-volume @DEFAULT_AUDIO_SINK@ 5%+'";
+        "XF86AudioLowerVolume" = "exec '${wireplumber} set-volume @DEFAULT_AUDIO_SINK@ 5%-'";
+        "XF86AudioMute" = "exec '${wireplumber} set-mute @DEFAULT_AUDIO_SINK@ toggle'";
+        "XF86AudioPlay" = "exec '${playerctl} play-pause'";
+        "XF86AudioNext" = "exec '${playerctl} next'";
+        "XF86AudioPrev" = "exec '${playerctl} previous'";
+};
     };
     extraSessionCommands = ''
       export SDL_VIDEODRIVER=wayland
