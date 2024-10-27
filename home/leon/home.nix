@@ -119,6 +119,12 @@
       startup = [
         { command = "autotiling-rs"; }
       ];
+      input = {
+        "type:pointer" = {
+    		accel_profile = "flat";
+		pointer_accel = "0";
+	};
+      };
       output = {
         DP-3 = {
 	  # NOTE: uncomment when Sway 1.10 released
