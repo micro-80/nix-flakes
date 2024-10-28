@@ -28,11 +28,9 @@
     noto-fonts-emoji
 
     # sway
-    autotiling-rs
-    grim
-    slurp
-    wl-clipboard
     mako
+    mate.caja
+    mate.eom
 
     # misc
     evince
@@ -40,6 +38,7 @@
     pavucontrol
     seahorse
     unzip
+    wl-clipboard
     vesktop
   ];
 
@@ -64,26 +63,12 @@
         default = {
           blocks = [
             {
-              alert = 10.0;
-              block = "disk_space";
-              info_type = "available";
-              interval = 60;
-              path = "/";
-              warning = 20.0;
+              block = "music";
+              format = "{ $combo.str(max_w:50,rot_interval:0.5) |}";
             }
             {
-              block = "memory";
-              format = " $icon mem_used_percents ";
-              format_alt = " $icon $swap_used_percents ";
-            }
-            {
-              block = "cpu";
-              interval = 1;
-            }
-            {
-              block = "load";
-              format = " $icon $1m ";
-              interval = 1;
+              block = "sound";
+              device_kind = "source";
             }
             {
               block = "sound";
@@ -95,6 +80,15 @@
             }
           ];
         };
+      };
+    };
+    rofi = {
+      enable = true;
+      package = pkgs.rofi-wayland.override {plugins = with pkgs; [rofi-calc rofi-emoji rofi-power-menu];};
+      theme = ./catppuccin-macchiato.rasi;
+      extraConfig = {
+        show-icons = true;
+        drun-display-format = "{icon} {name}";
       };
     };
     ssh = {
@@ -139,6 +133,10 @@
       name = "Adwaita";
       package = pkgs.adwaita-icon-theme;
     };
+    gtk3.extraConfig = {
+      gtk-application-prefer-dark-theme = true;
+    };
+    gtk4.extraConfig = {gtk-application-prefer-dark-theme = true;};
     iconTheme = {
       name = "Adwaita";
       package = pkgs.adwaita-icon-theme;
@@ -151,7 +149,8 @@
 
   wayland.windowManager.sway = {
     enable = true;
-    config = rec {
+    config = {
+      menu = "${pkgs.rofi-wayland}/bin/rofi -show drun";
       modifier = "Mod4";
       terminal = "alacritty";
 
@@ -160,9 +159,6 @@
           position = "bottom";
           statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs ~/.config/i3status-rust/config-default.toml";
         }
-      ];
-      startup = [
-        {command = "autotiling-rs";}
       ];
       input = {
         "type:pointer" = {
@@ -177,6 +173,9 @@
           adaptive_sync = "on";
         };
       };
+      startup = [
+        {command = "${pkgs.autotiling-rs}/bin/autotiling-rs";}
+      ];
 
       keybindings = let
         modifier = config.wayland.windowManager.sway.config.modifier;
@@ -184,6 +183,7 @@
         playerctl = "${pkgs.playerctl}/bin/playerctl";
       in
         lib.mkOptionDefault {
+          "Print" = "exec ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp -d)\" - | ${pkgs.wl-clipboard}/bin/wl-copy";
           #"XF86MonBrightnessDown" = "exec 'light -U 15'";
           #"XF86MonBrightnessUp" = "exec 'light -A 15'";
           "XF86AudioRaiseVolume" = "exec '${wireplumber} set-volume @DEFAULT_AUDIO_SINK@ 5%+'";
@@ -205,8 +205,8 @@
 
   xdg.portal = {
     enable = true;
-    extraPortals = with pkgs; [ xdg-desktop-portal-wlr xdg-desktop-portal-gtk ];
-    config.sway.default = lib.mkDefault [ "wlr" "gtk" ];
+    extraPortals = with pkgs; [xdg-desktop-portal-wlr xdg-desktop-portal-gtk];
+    config.sway.default = lib.mkDefault ["wlr" "gtk"];
   };
 
   home.stateVersion = "24.05";
