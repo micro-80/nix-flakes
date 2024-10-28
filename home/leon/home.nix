@@ -35,6 +35,8 @@
     # misc
     evince
     fastfetch
+    htop
+    obs-studio
     pavucontrol
     seahorse
     unzip
@@ -47,7 +49,7 @@
     alacritty = {
       enable = true;
       settings = {
-        import = [
+        general.import = [
           "${pkgs.alacritty-theme}/catppuccin_macchiato.toml"
         ];
       };
