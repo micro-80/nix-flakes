@@ -121,7 +121,7 @@
   services.gvfs.enable = true;
   services.gnome.gnome-keyring.enable = true;
 
-  environment.pathsToLink = ["/share/zsh"];
+  environment.pathsToLink = ["/share/xdg-desktop-portal" "/share/applications" "/share/zsh"];
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

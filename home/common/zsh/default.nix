@@ -12,7 +12,8 @@
     enableCompletion = true;
 
     shellAliases = {
-      osUpdate = "sudo nixos-rebuild switch --flake .#";
+      nixosRebuild = "sudo nixos-rebuild switch --flake .#";
+      nixosUpdate = "sudo nixos-rebuild switch --recreate-lock-file --flake .";
     };
     history = {
       size = 10000;

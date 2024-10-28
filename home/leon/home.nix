@@ -149,6 +149,7 @@
 
   wayland.windowManager.sway = {
     enable = true;
+    systemd.enable = true;
     config = {
       menu = "${pkgs.rofi-wayland}/bin/rofi -show drun";
       modifier = "Mod4";
@@ -176,6 +177,15 @@
       startup = [
         {command = "${pkgs.autotiling-rs}/bin/autotiling-rs";}
       ];
+      window.commands = [
+        {
+          command = "floating enable";
+          criteria = {
+            app_id = "firefox";
+            title = "^Picture-in-Picture$";
+          };
+        }
+      ];
 
       keybindings = let
         modifier = config.wayland.windowManager.sway.config.modifier;
@@ -184,10 +194,11 @@
         playerctl = "${pkgs.playerctl}/bin/playerctl";
       in
         lib.mkOptionDefault {
-	  # TODO: fix below, not working
-	  #"${modifier}+c" = "exec ${rofi} -show calc -modi calc -no-show-match -no-sort";
-	  "${modifier}+e" = "exec ${pkgs.rofimoji}/bin/rofimoji";
-	  "${modifier}+p" = "exec ${rofi} -show p -modi p:'${pkgs.rofi-power-menu}/bin/rofi-power-menu'";
+          # TODO: fix below, not working
+          #"${modifier}+c" = "exec ${rofi} -show calc -modi calc -no-show-match -no-sort";
+          "${modifier}+e" = "exec ${pkgs.rofimoji}/bin/rofimoji";
+          "${modifier}+p" = "exec ${rofi} -show p -modi p:'${pkgs.rofi-power-menu}/bin/rofi-power-menu'";
+          "${modifier}+Shift+s" = "sticky toggle";
           "Print" = "exec ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp -d)\" - | ${pkgs.wl-clipboard}/bin/wl-copy";
           #"XF86MonBrightnessDown" = "exec 'light -U 15'";
           #"XF86MonBrightnessUp" = "exec 'light -A 15'";
@@ -210,8 +221,9 @@
 
   xdg.portal = {
     enable = true;
+    xdgOpenUsePortal = true;
     extraPortals = with pkgs; [xdg-desktop-portal-wlr xdg-desktop-portal-gtk];
-    config.sway.default = lib.mkDefault ["wlr" "gtk"];
+    config.common.default = "*";
   };
 
   home.stateVersion = "24.05";
