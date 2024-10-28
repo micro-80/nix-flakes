@@ -186,7 +186,7 @@
       ];
       window.commands = [
         {
-          command = "floating enable";
+          command = "floating enable, sticky enable";
           criteria = {
             app_id = "firefox";
             title = "^Picture-in-Picture$";
