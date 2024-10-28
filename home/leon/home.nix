@@ -54,6 +54,11 @@
         ];
       };
     };
+    direnv = {
+      enable = true;
+      enableZshIntegration = true;
+      nix-direnv.enable = true;
+    };
     git = {
       enable = true;
       userName = "prophetarmed";

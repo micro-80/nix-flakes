@@ -4,12 +4,18 @@
   ...
 }: {
   home.packages = with pkgs; [
-    cargo
+    # plugin dependencies
     fd
     gcc
-    go
     nodejs_22
     ripgrep
+
+    # lsp dependencies
+    gopls
+    lua-language-server
+    nodePackages.typescript-language-server
+    pyright
+    rust-analyzer
   ];
 
   programs.neovim = {
