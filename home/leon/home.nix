@@ -84,7 +84,7 @@
     };
     rofi = {
       enable = true;
-      package = pkgs.rofi-wayland.override {plugins = with pkgs; [rofi-calc rofi-emoji rofi-power-menu];};
+      package = pkgs.rofi-wayland;
       theme = ./catppuccin-macchiato.rasi;
       extraConfig = {
         show-icons = true;
@@ -179,10 +179,15 @@
 
       keybindings = let
         modifier = config.wayland.windowManager.sway.config.modifier;
+        rofi = "${pkgs.rofi-wayland}/bin/rofi";
         wireplumber = "${pkgs.wireplumber}/bin/wpctl";
         playerctl = "${pkgs.playerctl}/bin/playerctl";
       in
         lib.mkOptionDefault {
+	  # TODO: fix below, not working
+	  #"${modifier}+c" = "exec ${rofi} -show calc -modi calc -no-show-match -no-sort";
+	  "${modifier}+e" = "exec ${pkgs.rofimoji}/bin/rofimoji";
+	  "${modifier}+p" = "exec ${rofi} -show p -modi p:'${pkgs.rofi-power-menu}/bin/rofi-power-menu'";
           "Print" = "exec ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp -d)\" - | ${pkgs.wl-clipboard}/bin/wl-copy";
           #"XF86MonBrightnessDown" = "exec 'light -U 15'";
           #"XF86MonBrightnessUp" = "exec 'light -A 15'";
