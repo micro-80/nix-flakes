@@ -9,6 +9,10 @@ return {
 		},
 		config = function()
 			local servers = {
+				nil_ls = {},
+				pyright = {},
+				rust_analyzer = {},
+				ts_ls = {},
 				gopls = {
 					settings = {
 						gopls = {
@@ -20,10 +24,6 @@ return {
 						},
 					},
 				},
-				pyright = {},
-				rust_analyzer = {},
-				ts_ls = {},
-				zls = {},
 				lua_ls = {
 					settings = {
 						Lua = {

@@ -58,6 +58,45 @@
       userName = "prophetarmed";
       userEmail = "me@prophetarmed.com";
     };
+    i3status-rust = {
+      enable = true;
+      bars = {
+        default = {
+          blocks = [
+            {
+              alert = 10.0;
+              block = "disk_space";
+              info_type = "available";
+              interval = 60;
+              path = "/";
+              warning = 20.0;
+            }
+            {
+              block = "memory";
+              format = " $icon mem_used_percents ";
+              format_alt = " $icon $swap_used_percents ";
+            }
+            {
+              block = "cpu";
+              interval = 1;
+            }
+            {
+              block = "load";
+              format = " $icon $1m ";
+              interval = 1;
+            }
+            {
+              block = "sound";
+            }
+            {
+              block = "time";
+              format = " $timestamp.datetime(f:'%a %d/%m %R') ";
+              interval = 60;
+            }
+          ];
+        };
+      };
+    };
     ssh = {
       enable = true;
       addKeysToAgent = "yes";
@@ -116,6 +155,12 @@
       modifier = "Mod4";
       terminal = "alacritty";
 
+      bars = [
+        {
+          position = "bottom";
+          statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs ~/.config/i3status-rust/config-default.toml";
+        }
+      ];
       startup = [
         {command = "autotiling-rs";}
       ];
@@ -156,6 +201,12 @@
       eval $(gnome-keyring-daemon --start)
       export SSH_AUTH_SOCK
     '';
+  };
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [ xdg-desktop-portal-wlr xdg-desktop-portal-gtk ];
+    config.sway.default = lib.mkDefault [ "wlr" "gtk" ];
   };
 
   home.stateVersion = "24.05";
