@@ -4,6 +4,8 @@
   ...
 }: {
   home.packages = with pkgs; [
+    stylua
+
     # plugin dependencies
     fd
     gcc
