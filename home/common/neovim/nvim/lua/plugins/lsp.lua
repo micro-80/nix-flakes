@@ -6,6 +6,7 @@ return {
 		},
 		config = function()
 			local servers = {
+				bashls = {},
 				nil_ls = {},
 				pyright = {},
 				rust_analyzer = {},

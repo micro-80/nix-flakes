@@ -15,6 +15,7 @@
     # lsp dependencies
     gopls
     lua-language-server
+    nodePackages.bash-language-server
     nodePackages.typescript-language-server
     pyright
     rust-analyzer
