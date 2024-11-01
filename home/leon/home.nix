@@ -28,7 +28,6 @@
     noto-fonts-emoji
 
     # sway
-    mako
     mate.caja
     mate.eom
 
@@ -132,6 +131,11 @@
         bind-key -n M-) select-window -t 0
       '';
     };
+  };
+
+  services.mako = {
+    enable = true;
+    defaultTimeout = 3000;
   };
 
   gtk = {
