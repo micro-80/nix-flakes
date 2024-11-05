@@ -27,14 +27,13 @@
     noto-fonts-cjk-sans
     noto-fonts-emoji
 
-    # sway
-    mate.caja
-    mate.eom
-
     # misc
     evince
     fastfetch
     htop
+    mate.caja
+    mate.eom
+    mpv
     obs-studio
     pavucontrol
     seahorse
