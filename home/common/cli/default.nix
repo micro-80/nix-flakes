@@ -20,6 +20,7 @@
         general.import = [
           "${pkgs.alacritty-theme}/catppuccin_macchiato.toml"
         ];
+	window.startup_mode = "Maximized";
       };
     };
     direnv = {
