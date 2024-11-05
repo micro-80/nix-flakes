@@ -13,6 +13,15 @@
 
   networking.hostName = "aiko";
 
+  # framework laptop-specific stuff
+  services.fwupd.enable = true;
+  services.fwupd.extraRemotes = [ "lvfs-testing" ];
+  services.fwupd.uefiCapsuleSettings.DisableCapsuleUpdateOnDisk = true;
+
+  services.power-profiles-daemon.enable = false;
+  services.thermald.enable = true;
+  services.tlp.enable = true;
+
   # Enable networking
   networking.networkmanager.enable = true;
   systemd.services.NetworkManager-wait-online.enable = false;
@@ -94,6 +103,12 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
 

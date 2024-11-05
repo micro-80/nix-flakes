@@ -11,6 +11,10 @@
 
   home.packages = with pkgs; [
     (pkgs.nerdfonts.override {fonts = ["Hack"];})
+
+    # for generating PDFs from Markdown
+    pandoc
+    tectonic
   ];
 
   programs = {
