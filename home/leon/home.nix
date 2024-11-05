@@ -100,8 +100,7 @@
       };
       output = {
         DP-3 = {
-          # NOTE: uncomment when Sway 1.10 released
-          #allow_tearing = "yes";
+          allow_tearing = "yes";
           adaptive_sync = "on";
         };
       };
