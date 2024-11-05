@@ -26,7 +26,7 @@
         specialArgs = {inherit inputs;};
         modules = [
           ./machines/aiko/configuration.nix
-	  nixos-hardware.nixosModules.framework-12th-gen-intel
+          nixos-hardware.nixosModules.framework-12th-gen-intel
 
           {
             nix.nixPath = ["nixpkgs=${nixpkgs}"];

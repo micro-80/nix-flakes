@@ -1,21 +1,32 @@
-{ config, pkgs, ... }:
-
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  config,
+  pkgs,
+  ...
+}: {
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelParams = ["quiet" "splash"];
+  boot.kernelParams = [
+    "resume=LABEL=swap"
+    "quiet"
+    "splash"
+  ];
+
+  services.logind.lidSwitch = "suspend-then-hibernate";
+  systemd.sleep.extraConfig = ''
+    HibernateDelaySec=45min
+  '';
 
   networking.hostName = "aiko";
 
   # framework laptop-specific stuff
   services.fwupd.enable = true;
-  services.fwupd.extraRemotes = [ "lvfs-testing" ];
+  services.fwupd.extraRemotes = ["lvfs-testing"];
   services.fwupd.uefiCapsuleSettings.DisableCapsuleUpdateOnDisk = true;
 
   services.power-profiles-daemon.enable = false;
@@ -92,9 +103,9 @@
   users.users.user = {
     isNormalUser = true;
     description = "user";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = ["networkmanager" "wheel"];
     packages = with pkgs; [
-    #  thunderbird
+      #  thunderbird
     ];
   };
 
@@ -116,5 +127,4 @@
   users.defaultUserShell = pkgs.zsh;
 
   system.stateVersion = "24.05"; # Did you read the comment?
-
 }
