@@ -19,6 +19,9 @@
       color-scheme = "prefer-dark";
       show-battery-percentage = true;
     };
+    "org/gnome/desktop/peripherals/pointingstick" = {
+      accel-profile = "flat";
+    };
     "org/gnome/desktop/peripherals/touchpad" = {
       natural-scroll = false;
     };
