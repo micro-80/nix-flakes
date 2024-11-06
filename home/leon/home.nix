@@ -23,7 +23,6 @@
 
   home.packages = with pkgs; [
     evince
-    fastfetch
     htop
     mate.caja
     mate.eom
@@ -33,7 +32,6 @@
     seahorse
     unzip
     wl-clipboard
-    vesktop
   ];
 
   programs = {
