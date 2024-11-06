@@ -12,6 +12,8 @@
   home.username = "user";
   home.homeDirectory = "/home/user";
 
+  home.packages = with pkgs; [ obsidian ];
+
   dconf.settings = {
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
@@ -37,6 +39,16 @@
       switch-to-workspace-2 = ["<Super>2"];
       switch-to-workspace-3 = ["<Super>3"];
       switch-to-workspace-4 = ["<Super>4"];
+    };
+  };
+
+  # TODO: remove duplication
+  xdg.desktopEntries = {
+    cider = {
+      name = "Cider";
+      genericName = "Apple Music Client";
+      exec = "${pkgs.appimage-run}/bin/appimage-run /home/user/.local/bin/Cider.AppImage %U";
+      terminal = false;
     };
   };
 

@@ -149,6 +149,7 @@
     '';
   };
 
+  # TODO: remove duplication
   xdg.desktopEntries = {
     cider = {
       name = "Cider";
