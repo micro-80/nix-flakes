@@ -40,5 +40,30 @@
 
   environment.pathsToLink = ["/share/xdg-desktop-portal" "/share/applications" "/share/zsh"];
 
+  services.syncthing = {
+    enable = true;
+    guiAddress = "0.0.0.0:8384";
+    dataDir = "/home/user";
+    configDir = "/home/user/.config/syncthing";
+    user = "user";
+    group = "users";
+    declarative = {
+      overrideDevices = true;
+      overrideFolders = true;
+      devices = {
+        #"coredns-server" = { id = "REALLY-LONG-COREDNS-SERVER-SYNCTHING-KEY-HERE"; };
+      };
+      folders = {
+        "Obsidian" = {
+          path = "/home/user/Documents/Obsidian";
+          #devices = [ "laptop" ];
+          versioning = {
+            type = "simple";
+          };
+        };
+      };
+    };
+  };
+
   system.stateVersion = "24.05";
 }
