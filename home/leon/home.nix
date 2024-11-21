@@ -29,6 +29,7 @@
     mpv
     obs-studio
     pavucontrol
+    prismlauncher
     seahorse
     unzip
     wl-clipboard
@@ -164,6 +165,6 @@
     config.common.default = "*";
   };
 
-  home.stateVersion = "24.05";
+  home.stateVersion = "24.11";
   programs.home-manager.enable = true;
 }
