@@ -1,4 +1,3 @@
-# home.nix
 {
   config,
   lib,
@@ -17,9 +16,23 @@
     colima
   ];
 
-  programs.ssh.includes = [
-    "/Users/MGN25/.colima/ssh_config"
-  ];
+  programs.ssh = {
+    matchBlocks = {
+      "github-work" = {
+        hostname = "github.com";
+        identityFile = "~/.ssh/id_ed25519";
+        user = "Myles-Gordon-5nm_nbcuni";
+      };
+      "github-personal" = {
+        hostname = "github.com";
+        identityFile = "~/.ssh/id_ed25519-prophetarmed";
+        user = "prophetarmed";
+      };
+    };
+    includes = [
+      "/Users/MGN25/.colima/ssh_config"
+    ];
+  };
 
   home.stateVersion = "24.05";
   programs.home-manager.enable = true;

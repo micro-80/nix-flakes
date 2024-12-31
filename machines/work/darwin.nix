@@ -14,12 +14,6 @@
     };
   };
 
-  # Create /etc/zshrc that loads the nix-darwin environment.
-  programs = {
-    # gnupg.agent.enable = true;
-    zsh.enable = true; # default shell on catalina
-  };
-
   system.defaults = {
     dock = {
       autohide = true;
@@ -51,7 +45,6 @@
 
   # Shell
   programs.zsh.enable = true;
-  users.defaultUserShell = pkgs.zsh;
 
   users.users.MGN25 = {
     name = "MGN25";
