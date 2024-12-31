@@ -9,12 +9,17 @@
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-darwin = {
+      url = "github:LnL7/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs @ {
     nixpkgs,
     nixos-hardware,
     home-manager,
+    nix-darwin,
     ...
   }: {
     formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
@@ -57,6 +62,16 @@
             home-manager.users.user = import ./home/leon/home.nix;
           }
         ];
+      };
+    };
+
+    darwinConfigurations = {
+      "UKR4C7RQ747H" = nix-darwin.lib.darwinSystem {
+        system = "aarch64-darwin";
+	specialArgs = { inherit inputs; };
+	modules = [
+	  ./machines/work/darwin.nix
+	];
       };
     };
   };
