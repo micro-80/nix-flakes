@@ -27,6 +27,35 @@
     };
   };
 
+  homebrew = {
+    enable = true;
+    global = { autoUpdate = false; };
+    onActivation = {
+      autoUpdate = false;
+      upgrade = false;
+    };
+    
+    brews = [];
+    casks = [
+      "linearmouse"
+      "nikitabobko/tap/aerospace"
+      "intellij-idea"
+    ];
+  };
+
+  # Nix settings
+  nixpkgs.config.allowUnfree = true;
+  nix.settings.experimental-features = ["nix-command" "flakes"];
+
+  # Shell
+  programs.zsh.enable = true;
+  users.defaultUserShell = pkgs.zsh;
+
+  users.users.MGN25 = {
+        name = "MGN25";
+        home = "/Users/MGN25";
+    };
+
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog
   system.stateVersion = 5;

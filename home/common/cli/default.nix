@@ -11,10 +11,6 @@
 
   home.packages = with pkgs; [
     (pkgs.nerdfonts.override {fonts = ["Hack"];})
-
-    # for generating PDFs from Markdown
-    pandoc
-    tectonic
   ];
 
   programs = {
@@ -31,11 +27,6 @@
       enable = true;
       enableZshIntegration = true;
       nix-direnv.enable = true;
-    };
-    git = {
-      enable = true;
-      userName = "prophetarmed";
-      userEmail = "me@prophetarmed.com";
     };
     ssh = {
       enable = true;

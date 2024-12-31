@@ -6,7 +6,8 @@
 }: {
   imports = [
     ../common/cli
-    ../common/gtk.nix
+    ../common/cli/linux.nix
+    ../common/linux.nix
     ../common/packages.nix
   ];
   home.username = "user";
