@@ -13,7 +13,7 @@
   home.username = "user";
   home.homeDirectory = "/home/user";
 
-  home.packages = with pkgs; [ celluloid ];
+  home.packages = with pkgs; [celluloid];
 
   dconf.settings = {
     "org/gnome/desktop/interface" = {

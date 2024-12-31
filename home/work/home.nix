@@ -1,8 +1,10 @@
 # home.nix
-
-{ config, lib, pkgs, ... }:
-
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   imports = [
     ../common/cli
     ../common/packages.nix
@@ -19,7 +21,6 @@
     "/Users/MGN25/.colima/ssh_config"
   ];
 
-  home.stateVersion = "24.05"; 
+  home.stateVersion = "24.05";
   programs.home-manager.enable = true;
 }
-

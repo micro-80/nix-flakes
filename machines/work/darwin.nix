@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   environment.darwinConfig = "$HOME/.flakes/machines/work";
 
   # Auto upgrade nix package and the daemon service.
@@ -8,14 +10,14 @@
   nix = {
     package = pkgs.nix;
     settings = {
-      "extra-experimental-features" = [ "nix-command" "flakes" ];
+      "extra-experimental-features" = ["nix-command" "flakes"];
     };
   };
 
   # Create /etc/zshrc that loads the nix-darwin environment.
   programs = {
     # gnupg.agent.enable = true;
-    zsh.enable = true;  # default shell on catalina
+    zsh.enable = true; # default shell on catalina
   };
 
   system.defaults = {
@@ -29,12 +31,12 @@
 
   homebrew = {
     enable = true;
-    global = { autoUpdate = false; };
+    global = {autoUpdate = false;};
     onActivation = {
       autoUpdate = false;
       upgrade = false;
     };
-    
+
     brews = [];
     casks = [
       "linearmouse"
@@ -52,9 +54,9 @@
   users.defaultUserShell = pkgs.zsh;
 
   users.users.MGN25 = {
-        name = "MGN25";
-        home = "/Users/MGN25";
-    };
+    name = "MGN25";
+    home = "/Users/MGN25";
+  };
 
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog

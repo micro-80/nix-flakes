@@ -22,6 +22,7 @@
     nix-darwin,
     ...
   }: {
+    formatter.aarch64-darwin = nixpkgs.legacyPackages.aarch64-darwin.alejandra;
     formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
 
     # TODO: clean up duplication
@@ -68,17 +69,17 @@
     darwinConfigurations = {
       "UKR4C7RQ747H" = nix-darwin.lib.darwinSystem {
         system = "aarch64-darwin";
-	specialArgs = { inherit inputs; };
-	modules = [
-	  ./machines/work/darwin.nix
-	  
+        specialArgs = {inherit inputs;};
+        modules = [
+          ./machines/work/darwin.nix
+
           home-manager.darwinModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.MGN25 = import ./home/work/home.nix;
           }
-	];
+        ];
       };
     };
   };
