@@ -24,11 +24,6 @@
 
   programs.ssh = {
     matchBlocks = {
-      "github-work-test" = {
-        hostname = "github.com";
-        identityFile = "~/.ssh/id_ed25519";
-        user = "Myles-Gordon-5nm_nbcuni";
-      };
       "github-work" = {
         hostname = "github.com";
         identityFile = "~/.ssh/id_ed25519";
