@@ -14,10 +14,21 @@
   home.packages = with pkgs; [
     bruno
     colima
+    gauge
+    kubectl
+    kubectx
+    maven
+    sbt
+    scala_2_13
   ];
 
   programs.ssh = {
     matchBlocks = {
+      "github-work-test" = {
+        hostname = "github.com";
+        identityFile = "~/.ssh/id_ed25519";
+        user = "Myles-Gordon-5nm_nbcuni";
+      };
       "github-work" = {
         hostname = "github.com";
         identityFile = "~/.ssh/id_ed25519";
@@ -30,7 +41,7 @@
       };
     };
     includes = [
-      "/Users/MGN25/.colima/ssh_config"
+      "/Users/mgn25/.colima/ssh_config"
     ];
   };
 

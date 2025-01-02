@@ -31,12 +31,16 @@
       upgrade = false;
     };
 
-    brews = [];
+    brews = [
+    ];
     casks = [
       "alacritty"
       "linearmouse"
       "nikitabobko/tap/aerospace"
       "intellij-idea"
+      "temurin@11"
+    ];
+    taps = [
     ];
   };
 
