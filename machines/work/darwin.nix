@@ -17,7 +17,7 @@
   system.defaults = {
     dock = {
       autohide = true;
-      orientation = "right";
+      orientation = "bottom";
       show-recents = false;
       static-only = true;
     };
@@ -33,6 +33,7 @@
 
     brews = [];
     casks = [
+      "alacritty"
       "linearmouse"
       "nikitabobko/tap/aerospace"
       "intellij-idea"
@@ -46,9 +47,9 @@
   # Shell
   programs.zsh.enable = true;
 
-  users.users.MGN25 = {
-    name = "MGN25";
-    home = "/Users/MGN25";
+  users.users.mgn25 = {
+    name = "mgn25";
+    home = "/Users/mgn25";
   };
 
   # Used for backwards compatibility, please read the changelog before changing.

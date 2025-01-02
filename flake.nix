@@ -77,7 +77,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.MGN25 = import ./home/work/home.nix;
+            home-manager.users.mgn25 = import ./home/work/home.nix;
           }
         ];
       };

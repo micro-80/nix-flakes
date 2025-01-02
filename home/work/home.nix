@@ -8,8 +8,8 @@
     ../common/cli
     ../common/packages.nix
   ];
-  home.username = "MGN25";
-  home.homeDirectory = "/Users/MGN25";
+  home.username = "mgn25";
+  home.homeDirectory = "/Users/mgn25";
 
   home.packages = with pkgs; [
     bruno
