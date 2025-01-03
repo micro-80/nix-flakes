@@ -23,16 +23,19 @@
   };
 
   home.packages = with pkgs; [
+    bottles
     evince
     htop
     mate.caja
     mate.eom
     mpv
+    rpcs3
     obs-studio
     pavucontrol
     prismlauncher
     seahorse
     unzip
+    wireguard-tools
     wl-clipboard
   ];
 
