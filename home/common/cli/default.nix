@@ -20,7 +20,6 @@
         general.import = [
           "${pkgs.alacritty-theme}/catppuccin_macchiato.toml"
         ];
-        shell = { program = "${pkgs.zsh}/bin/zsh"; };
         window = {
 	  option_as_alt = "OnlyLeft";
 	  startup_mode = "Maximized";
