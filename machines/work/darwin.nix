@@ -35,6 +35,7 @@
     ];
     casks = [
       "alacritty"
+      "bruno"
       "linearmouse"
       "nikitabobko/tap/aerospace"
       "intellij-idea"

@@ -12,7 +12,7 @@
   home.homeDirectory = "/Users/mgn25";
 
   home.packages = with pkgs; [
-    bruno
+    bash
     colima
     gauge
     kubectl
