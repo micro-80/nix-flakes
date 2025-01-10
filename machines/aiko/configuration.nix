@@ -8,12 +8,13 @@
     ./hardware-configuration.nix
   ];
 
-  boot.blacklistedKernelModules = ["bluetooth"];
   boot.kernelParams = [
     "resume=LABEL=swap"
     "quiet"
     "splash"
   ];
+
+  hardware.bluetooth.enable = false;
   hardware.cpu.intel.updateMicrocode = true;
 
   services.logind.lidSwitch = "suspend-then-hibernate";
