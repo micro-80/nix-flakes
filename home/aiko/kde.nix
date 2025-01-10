@@ -9,6 +9,13 @@
     kwin = {
       effects.desktopSwitching.animation = "off";
       virtualDesktops.number = 4;
+
+      nightLight = {
+        enable = true;
+        latitude = "53.58";
+        longitude = "-0.69";
+        mode = "location";
+      };
     };
 
     panels = [
