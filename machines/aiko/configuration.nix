@@ -31,17 +31,12 @@
   services.thermald.enable = true;
   services.tlp.enable = true;
 
-  # GNOME
-  services.xserver.enable = true;
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  # Enable the X11 windowing system.
+  # You can disable this if you're only using the Wayland session.
+  # services.xserver.enable = true;
 
-  environment.gnome.excludePackages = with pkgs; [
-    epiphany
-    geary
-    gnome-maps
-    gnome-music
-    gnome-tour
-    gnome-connections
-  ];
+  # Enable the KDE Plasma Desktop Environment.
+  services.displayManager.sddm.enable = true;
+  services.displayManager.sddm.wayland.enable = true;
+  services.desktopManager.plasma6.enable = true;
 }
