@@ -12,8 +12,10 @@
 
       nightLight = {
         enable = true;
-        latitude = "53.58";
-        longitude = "-0.69";
+        location = {
+          latitude = "53.58";
+          longitude = "-0.69";
+        };
         mode = "location";
       };
     };
@@ -63,6 +65,18 @@
         ];
       }
     ];
+
+    powerdevil = {
+      "AC" = {
+        autoSuspend.action = "nothing";
+      };
+      battery = {
+        autoSuspend.action = "nothing";
+      };
+      lowBattery = {
+        autoSuspend.action = "nothing";
+      };
+    };
 
     shortcuts = {
       "org.kde.krunner.desktop" = {
