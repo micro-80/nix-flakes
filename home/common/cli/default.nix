@@ -22,9 +22,9 @@
           "${pkgs.alacritty-theme}/catppuccin_macchiato.toml"
         ];
         window = {
-	  option_as_alt = "OnlyLeft";
-	  startup_mode = "Maximized";
-	};
+          option_as_alt = "OnlyLeft";
+          startup_mode = "Maximized";
+        };
       };
     };
     direnv = {

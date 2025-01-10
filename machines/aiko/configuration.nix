@@ -8,6 +8,7 @@
     ./hardware-configuration.nix
   ];
 
+  boot.blacklistedKernelModules = ["bluetooth"];
   boot.kernelParams = [
     "resume=LABEL=swap"
     "quiet"
