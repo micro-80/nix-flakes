@@ -11,6 +11,10 @@
   home.username = "mgn25";
   home.homeDirectory = "/Users/mgn25";
 
+  home.sessionPath = [
+    "$HOME/bin"
+  ];
+
   home.packages = with pkgs; [
     bash
     colima
@@ -41,7 +45,7 @@
       "github-work" = {
         hostname = "github.com";
         identityFile = "~/.ssh/id_ed25519";
-        user = "Myles-Gordon-5nm_nbcuni";
+        user = "mylesgordon";
       };
       "github-personal" = {
         hostname = "github.com";
@@ -52,6 +56,12 @@
     includes = [
       "/Users/mgn25/.colima/ssh_config"
     ];
+  };
+
+  programs.zsh = {
+    shellAliases = {
+      kubeShowVersions = "kubectl get deployment -o json | jq '.items[].metadata.labels | .\"app.kubernetes.io/instance\" + \" - \" + .\"app.kubernetes.io/version\"'";
+    };
   };
 
   home.stateVersion = "24.05";

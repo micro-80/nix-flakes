@@ -39,6 +39,7 @@
       "linearmouse"
       "nikitabobko/tap/aerospace"
       "intellij-idea"
+      "obsidian"
       "temurin@11"
     ];
     taps = [

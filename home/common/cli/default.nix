@@ -11,6 +11,8 @@
 
   home.packages = with pkgs; [
     (pkgs.nerdfonts.override {fonts = ["Hack"];})
+
+    gh
     jq
   ];
 
@@ -18,6 +20,14 @@
     alacritty = {
       enable = true;
       settings = {
+        font = {
+    size = 12.0;
+    use_thin_strokes = true;
+
+    normal.family = "Hack Nerd Font Mono";
+    bold.family = "Hack Nerd Font Mono";
+    italic.family = "Hack Nerd Font Mono";
+  };
         general.import = [
           "${pkgs.alacritty-theme}/catppuccin_macchiato.toml"
         ];
