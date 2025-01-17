@@ -18,6 +18,8 @@
   home.packages = with pkgs; [
     bash
     colima
+    crane
+    docker
     gauge
     kubectl
     kubectx
