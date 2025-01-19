@@ -9,6 +9,7 @@
     noto-fonts-cjk-sans
     noto-fonts-emoji
 
+    prismlauncher
     obsidian
     vesktop
   ];

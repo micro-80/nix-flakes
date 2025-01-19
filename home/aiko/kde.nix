@@ -6,6 +6,13 @@
 }: {
   programs.plasma = {
     enable = true;
+
+    kscreenlocker = {
+      autoLock = false;
+      passwordRequiredDelay = 0;
+      timeout = 0;
+    };
+
     kwin = {
       effects.desktopSwitching.animation = "off";
       virtualDesktops.number = 4;
@@ -69,12 +76,15 @@
     powerdevil = {
       "AC" = {
         autoSuspend.action = "nothing";
+        whenSleepingEnter = "standbyThenHibernate";
       };
       battery = {
         autoSuspend.action = "nothing";
+        whenSleepingEnter = "standbyThenHibernate";
       };
       lowBattery = {
         autoSuspend.action = "nothing";
+        whenSleepingEnter = "standbyThenHibernate";
       };
     };
 
