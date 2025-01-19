@@ -5,8 +5,8 @@
   ...
 }: {
   imports = [
+    ./fish.nix
     ./neovim
-    ./zsh
   ];
 
   home.packages = with pkgs; [
@@ -21,6 +21,15 @@
         general.import = [
           "${pkgs.alacritty-theme}/catppuccin_macchiato.toml"
         ];
+        terminal.shell = {
+          program = "${pkgs.tmux}/bin/tmux";
+          args = [
+            "new-session"
+            "-A"
+            "-s"
+            "general"
+          ];
+        };
         window = {
           option_as_alt = "OnlyLeft";
           startup_mode = "Maximized";
@@ -29,7 +38,7 @@
     };
     direnv = {
       enable = true;
-      enableZshIntegration = true;
+      # enableFishIntegration = true;
       nix-direnv.enable = true;
     };
     ssh = {

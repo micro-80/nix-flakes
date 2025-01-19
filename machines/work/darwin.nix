@@ -49,8 +49,7 @@
   nixpkgs.config.allowUnfree = true;
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
-  # Shell
-  programs.zsh.enable = true;
+  programs.fish.enable = true;
 
   users.users.mgn25 = {
     name = "mgn25";

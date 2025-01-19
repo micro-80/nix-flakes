@@ -37,7 +37,7 @@
     };
   };
 
-  environment.pathsToLink = ["/share/xdg-desktop-portal" "/share/applications" "/share/zsh"];
+  environment.pathsToLink = ["/share/xdg-desktop-portal" "/share/applications"];
 
   services.syncthing = {
     enable = true;

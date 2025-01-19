@@ -59,7 +59,6 @@
     rpcs3
     obs-studio
     pavucontrol
-    prismlauncher
     seahorse
     unzip
     wireguard-tools

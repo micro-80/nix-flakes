@@ -66,8 +66,8 @@
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
   # Shell
-  programs.zsh.enable = true;
-  users.defaultUserShell = pkgs.zsh;
+  programs.fish.enable = true;
+  users.defaultUserShell = pkgs.fish;
 
   system.stateVersion = "24.11";
 }

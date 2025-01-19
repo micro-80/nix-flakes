@@ -22,6 +22,20 @@
     scala_2_13
   ];
 
+  programs.fish = {
+    plugins = [
+      {
+        name = "fish-kube-prompt";
+        src = pkgs.fetchFromGitHub {
+          owner = "aluxian";
+          repo = "fish-kube-prompt";
+          rev = "bbb2c4bc511970b60df51bfbfb2289f6161b489b";
+          sha256 = "0000";
+        };
+      }
+    ];
+  };
+
   programs.ssh = {
     matchBlocks = {
       "github-work" = {
