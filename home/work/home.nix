@@ -36,7 +36,7 @@
           owner = "aluxian";
           repo = "fish-kube-prompt";
           rev = "bbb2c4bc511970b60df51bfbfb2289f6161b489b";
-          sha256 = "0000";
+          sha256 = "sha256-/ZdG0oAA6MUCjsFv+CeqCZQJq0AIS02+H2dliykn71s=";
         };
       }
     ];

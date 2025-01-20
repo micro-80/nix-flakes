@@ -10,7 +10,7 @@
   ];
 
   home.packages = with pkgs; [
-    (pkgs.nerdfonts.override {fonts = ["Hack"];})
+    nerd-fonts.hack
 
     gh
     jq
