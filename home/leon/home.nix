@@ -102,6 +102,12 @@
     };
   };
 
+  services.gammastep = {
+    enable = true;
+    latitude = "53.59";
+    longitude = "-0.695";
+  };
+
   services.mako = {
     enable = true;
     defaultTimeout = 3000;
