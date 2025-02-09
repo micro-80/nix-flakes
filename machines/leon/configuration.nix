@@ -26,7 +26,6 @@
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
 
-  # VSCode wayland
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   programs.steam = {

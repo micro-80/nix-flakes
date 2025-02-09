@@ -4,6 +4,11 @@
   pkgs,
   ...
 }: {
+  programs.fish.interactiveShellInit = ''
+    export SSH_ASKPASS_REQUIRE=prefer
+    export SSH_ASKPASS=${pkgs.kdePackages.ksshaskpass}/bin/ksshaskpass
+  '';
+
   programs.plasma = {
     enable = true;
 
