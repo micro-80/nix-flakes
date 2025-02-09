@@ -25,9 +25,14 @@
     ];
 
     userSettings = {
-      "nix.formatterPath" = "alejandra";
+      # catpuccin
+      "editor.semanticHighlighting.enabled" = true;
+      "terminal.integrated.minimumContrastRatio" = 1;
+      "window.titleBarStyle" = "custom";
       "workbench.colorTheme" = "Catppuccin Macchiato";
       "workbench.iconTheme" = "Catppuccin Macchiato";
+
+      "nix.formatterPath" = "alejandra";
     };
   };
 }
