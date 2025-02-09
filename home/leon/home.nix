@@ -10,6 +10,7 @@
     ../common/linux.nix
     ../common/packages.nix
 
+    ./code.nix
     ./kde.nix
   ];
   home.username = "user";

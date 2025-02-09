@@ -10,9 +10,9 @@
     input.mice = [
       {
         accelerationProfile = "none";
-	name = "Logitech G203 LIGHTSYNC Gaming Mouse";
-	productId = "c092";
-	vendorId = "046d";
+        name = "Logitech G203 LIGHTSYNC Gaming Mouse";
+        productId = "c092";
+        vendorId = "046d";
       }
     ];
 

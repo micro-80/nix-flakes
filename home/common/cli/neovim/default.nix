@@ -12,7 +12,7 @@
     nodejs_22
     ripgrep
 
-   # lsp dependencies
+    # lsp dependencies
     lua-language-server
     nodePackages.bash-language-server
     pyright
