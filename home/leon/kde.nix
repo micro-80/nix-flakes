@@ -7,6 +7,15 @@
   programs.plasma = {
     enable = true;
 
+    input.mice = [
+      {
+        accelerationProfile = "none";
+	name = "Logitech G203 LIGHTSYNC Gaming Mouse";
+	productId = "c092";
+	vendorId = "046d";
+      }
+    ];
+
     kscreenlocker = {
       autoLock = false;
       passwordRequiredDelay = 0;
@@ -59,12 +68,10 @@
                 shown = [
                   "org.kde.plasma.volume"
                   "org.kde.plasma.networkmanagement"
-                  "org.kde.plasma.battery"
                 ];
                 hidden = [
                   "org.kde.plasma.clipboard"
                 ];
-                configs.battery.showPercentage = true;
               };
             };
           }
@@ -72,21 +79,6 @@
         ];
       }
     ];
-
-    powerdevil = {
-      "AC" = {
-        autoSuspend.action = "nothing";
-        whenSleepingEnter = "standbyThenHibernate";
-      };
-      battery = {
-        autoSuspend.action = "nothing";
-        whenSleepingEnter = "standbyThenHibernate";
-      };
-      lowBattery = {
-        autoSuspend.action = "nothing";
-        whenSleepingEnter = "standbyThenHibernate";
-      };
-    };
 
     shortcuts = {
       "org.kde.krunner.desktop" = {

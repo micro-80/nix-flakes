@@ -10,7 +10,6 @@
   networking.networkmanager.enable = true;
   systemd.services.NetworkManager-wait-online.enable = false;
   services.openssh.enable = true;
-  services.tailscale.enable = true;
 
   # Region
   time.timeZone = "Europe/London";

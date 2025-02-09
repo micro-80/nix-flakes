@@ -22,27 +22,14 @@
 
   networking.hostName = "leon";
 
-  programs.dconf.enable = true;
-  security.polkit.enable = true;
-  security.pam.services.greetd.enableGnomeKeyring = true;
-  services.gvfs.enable = true;
-  services.gnome.gnome-keyring.enable = true;
-  services.greetd = {
-    enable = true;
-    settings = {
-      default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd sway";
-        user = "greeter";
-      };
-    };
-  };
-
-  environment.pathsToLink = ["/share/xdg-desktop-portal" "/share/applications"];
+  # Enable the KDE Plasma Desktop Environment.
+  services.displayManager.sddm.enable = true;
+  services.desktopManager.plasma6.enable = true;
 
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+    # dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
     localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
   };
 
@@ -59,10 +46,6 @@
       defaultNetwork.settings.dns_enabled = true;
     };
   };
-
-  environment.systemPackages = with pkgs; [
-    docker-compose
-  ];
 
   system.stateVersion = "24.11";
 }

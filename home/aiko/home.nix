@@ -9,8 +9,6 @@
     ../common/cli/linux.nix
     ../common/linux.nix
     ../common/packages.nix
-
-    ./kde.nix
   ];
   home.username = "user";
   home.homeDirectory = "/home/user";
