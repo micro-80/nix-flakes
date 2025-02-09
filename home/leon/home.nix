@@ -184,16 +184,6 @@
     '';
   };
 
-  # TODO: remove duplication
-  xdg.desktopEntries = {
-    cider = {
-      name = "Cider";
-      genericName = "Apple Music Client";
-      exec = "${pkgs.appimage-run}/bin/appimage-run /mnt/Secondary/Programs/Cider.AppImage %U";
-      terminal = false;
-    };
-  };
-
   xdg.portal = {
     enable = true;
     xdgOpenUsePortal = true;

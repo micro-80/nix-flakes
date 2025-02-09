@@ -10,3 +10,8 @@ vim.api.nvim_set_keymap("n", "<C-l>", ":wincmd l<CR>", { noremap = true, silent 
 vim.wo.signcolumn = "number"
 vim.wo.number = true
 vim.wo.relativenumber = true
+
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = 99
