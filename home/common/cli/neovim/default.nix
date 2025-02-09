@@ -12,13 +12,10 @@
     nodejs_22
     ripgrep
 
-    # lsp dependencies
-    gopls
+   # lsp dependencies
     lua-language-server
     nodePackages.bash-language-server
-    nodePackages.typescript-language-server
     pyright
-    rust-analyzer
   ];
 
   programs.neovim = {

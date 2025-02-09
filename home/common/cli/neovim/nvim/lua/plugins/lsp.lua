@@ -7,21 +7,7 @@ return {
 		config = function()
 			local servers = {
 				bashls = {},
-				nil_ls = {},
 				pyright = {},
-				rust_analyzer = {},
-				ts_ls = {},
-				gopls = {
-					settings = {
-						gopls = {
-							analyses = {
-								unusedparams = true,
-							},
-							staticcheck = true,
-							gofumpt = true,
-						},
-					},
-				},
 				lua_ls = {
 					settings = {
 						Lua = {
