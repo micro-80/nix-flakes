@@ -15,8 +15,8 @@
       rust-lang.rust-analyzer
       tamasfe.even-better-toml
 
+      golang.go
       yzhang.markdown-all-in-one
-
       jnoortheen.nix-ide
 
       # Misc
@@ -25,6 +25,9 @@
     ];
 
     userSettings = {
+      "workbench.startupEditor" = "none";
+      "chat.commandCenter.enabled" = false;
+
       # catpuccin
       "editor.semanticHighlighting.enabled" = true;
       "terminal.integrated.minimumContrastRatio" = 1;
