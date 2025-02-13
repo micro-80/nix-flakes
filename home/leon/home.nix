@@ -23,6 +23,7 @@
     rpcs3
     obs-studio
     pavucontrol
+    ungoogled-chromium
     unzip
     wl-clipboard
   ];
