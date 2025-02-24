@@ -7,6 +7,8 @@
   imports = [
     ../common/cli
     ../common/cli/linux.nix
+    ../common/code.nix
+    ../common/kde.nix
     ../common/linux.nix
     ../common/packages.nix
   ];

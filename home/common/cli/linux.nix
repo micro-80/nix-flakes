@@ -5,9 +5,6 @@
   ...
 }: {
   home.packages = with pkgs; [
-    # for generating PDFs from Markdown
-    pandoc
-    tectonic
   ];
 
   programs = {

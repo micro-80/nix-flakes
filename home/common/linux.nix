@@ -9,9 +9,7 @@
     noto-fonts-cjk-sans
     noto-fonts-emoji
 
-    prismlauncher
     spotify
-    vesktop
   ];
 
   programs = {
