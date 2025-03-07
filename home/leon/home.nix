@@ -17,12 +17,16 @@
 
   home.packages = with pkgs; [
     bottles
+    eddie
     htop
     mpv
+    nicotine-plus
     rpcs3
     obs-studio
     pavucontrol
+    picard
     prismlauncher
+    qbittorrent
     ungoogled-chromium
     unzip
     wl-clipboard
