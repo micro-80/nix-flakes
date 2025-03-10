@@ -31,11 +31,19 @@
       # catpuccin
       "editor.semanticHighlighting.enabled" = true;
       "terminal.integrated.minimumContrastRatio" = 1;
-      "window.titleBarStyle" = "custom";
+      "window.titleBarStyle" = "native";
       "workbench.colorTheme" = "Catppuccin Macchiato";
       "workbench.iconTheme" = "Catppuccin Macchiato";
 
+      # vim
+      "vim.handleKeys" = {
+        "<C-p>" = false;
+        "<C-w>" = false;
+      };
+
+      # nix
       "nix.formatterPath" = "alejandra";
+      "search.exclude" = {"**/.direnv" = true;};
     };
   };
 }
