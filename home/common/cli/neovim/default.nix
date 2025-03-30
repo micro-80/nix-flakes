@@ -1,8 +1,11 @@
-{config, pkgs, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     ./config
     ./plugins
-    ./templates
   ];
 
   programs.nixvim = {
