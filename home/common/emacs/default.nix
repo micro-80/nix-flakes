@@ -20,6 +20,7 @@
         magit
 	marginalia
         lsp-mode
+	org-bullets
 	vertico
       ]) ++ (with epkgs.manualPackages; [
         treesit-grammars.with-all-grammars

@@ -14,6 +14,7 @@
 
 (setq evil-want-C-i-jump nil)
 (require 'org)
+(setq org-indent-mode t)
 (setq org-agenda-files '("~/Documents/Org/daily.org"))
 (setq org-directory "~/Documents/Org")
 (setq org-capture-templates
@@ -21,7 +22,7 @@
 	("b" "Branch" entry (file+datetree "~/Documents/Org/daily.org") "* Branch %?\n** %^{Topic} - %^{Comrade} :leadoff:\n** Minutes\n  %i\n  %a")
 	("d" "Daily" entry (file+datetree "~/Documents/Org/daily.org") "* %?\n  %i\n  %a")
 	("l" "Leadoff" entry (file+datetree "~/Documents/Org/daily.org") "* %^{Topic} - %^{Comrade} :leadoff: \n%?  %i\n  %a")
-	("t" "TODO" entry (file+datetree "~/Documents/Org/daily.org") "* TODO %?\n \nSCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))\nDEADLINE: %(org-insert-time-stamp (org-read-date nil t \"+2d\"))  %i\n  %a")
+	("t" "TODO" entry (file+datetree "~/Documents/Org/daily.org") "* TODO %?\n \nSCHEDULED: %^t\nDEADLINE: %^t  %i\n  %a")
        ))
 (setq org-todo-keywords
   '((sequence
@@ -118,12 +119,15 @@
     (evil-set-leader 'normal (kbd "SPC")))
 
 (use-package evil-org
-  :ensure t
   :after org
-  :hook (org-mode . (lambda () evil-org-mode))
+  :hook (org-mode . evil-org-mode)
   :config
   (require 'evil-org-agenda)
   (evil-org-agenda-set-keys))
+
+(use-package org-bullets
+  :after org
+  :hook (org-mode . org-bullets-mode))
 
 (use-package marginalia
   :after vertico
