@@ -59,13 +59,13 @@
     declarative = {
       overrideDevices = true;
       overrideFolders = true;
-      # devices = {
-      #   "laptop" = { id = "REALLY-LONG-LAPTOP-SYNCTHING-KEY-HERE"; };
-      # };
+      devices = {
+        "aiko" = { id = "UW32GUQ-YS2BZLZ-F4II4TS-ENYYO74-HQLHZGB-CBE5K74-I6XALAT-I3ZPVAO"; };
+      };
       folders = {
         "Org" = {
           path = "/home/user/Documents/Org";
-          #devices = [ "laptop" ];
+          devices = [ "aiko" ];
           versioning = {
             type = "simple";
             params = {
