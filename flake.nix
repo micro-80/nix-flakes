@@ -14,9 +14,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixvim = {
-    url = "github:nix-community/nixvim";
-    inputs.nixpkgs.follows = "nixpkgs";
-  };
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     plasma-manager = {
       url = "github:nix-community/plasma-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -73,9 +73,9 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.sharedModules = [
-	      nixvim.homeManagerModules.nixvim
-	      plasma-manager.homeManagerModules.plasma-manager
-	      ];
+              nixvim.homeManagerModules.nixvim
+              plasma-manager.homeManagerModules.plasma-manager
+            ];
             home-manager.users.user = import ./home/leon/home.nix;
           }
         ];

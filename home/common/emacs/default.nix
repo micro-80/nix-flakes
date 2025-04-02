@@ -10,19 +10,20 @@
     package = pkgs.emacs-pgtk;
     extraPackages = epkgs:
       (with epkgs.elpaPackages; [
-	use-package
+        use-package
       ])
       ++ (with epkgs.melpaPackages; [
         catppuccin-theme
-	consult
-	evil
-	evil-org
+        consult
+        evil
+        evil-org
         magit
-	marginalia
+        marginalia
         lsp-mode
-	org-bullets
-	vertico
-      ]) ++ (with epkgs.manualPackages; [
+        org-bullets
+        vertico
+      ])
+      ++ (with epkgs.manualPackages; [
         treesit-grammars.with-all-grammars
       ]);
     extraConfig = builtins.readFile ./init.el;

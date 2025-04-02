@@ -48,5 +48,34 @@
     };
   };
 
+  services.syncthing = {
+    enable = true;
+    dataDir = "/home/user/Documents";
+    #openDefaultPorts = true;
+    configDir = "/home/user/.config/syncthing";
+    user = "user";
+    group = "users";
+    guiAddress = "0.0.0.0:8384";
+    declarative = {
+      overrideDevices = true;
+      overrideFolders = true;
+      # devices = {
+      #   "laptop" = { id = "REALLY-LONG-LAPTOP-SYNCTHING-KEY-HERE"; };
+      # };
+      folders = {
+        "Org" = {
+          path = "/home/user/Documents/Org";
+          #devices = [ "laptop" ];
+          versioning = {
+            type = "simple";
+            params = {
+              keep = "10";
+            };
+          };
+        };
+      };
+    };
+  };
+
   system.stateVersion = "24.11";
 }

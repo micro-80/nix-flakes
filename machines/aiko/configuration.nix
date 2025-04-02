@@ -41,4 +41,33 @@
   services.displayManager.sddm.enable = true;
   services.displayManager.sddm.wayland.enable = true;
   services.desktopManager.plasma6.enable = true;
+
+  services.syncthing = {
+    enable = true;
+    dataDir = "/home/user/Documents";
+    #openDefaultPorts = true;
+    configDir = "/home/user/.config/syncthing";
+    user = "user";
+    group = "users";
+    guiAddress = "0.0.0.0:8384";
+    declarative = {
+      overrideDevices = true;
+      overrideFolders = true;
+      devices = {
+        "leon" = {id = "ZQKAEAR-XVONVAP-QXGZ5HN-MDKS4MK-QPSFOCN-SBQKBYM-UZAH7UO-FD7FMAM";};
+      };
+      folders = {
+        "Org" = {
+          path = "/home/user/Documents/Org";
+          devices = ["leon"];
+          versioning = {
+            type = "simple";
+            params = {
+              keep = "10";
+            };
+          };
+        };
+      };
+    };
+  };
 }
