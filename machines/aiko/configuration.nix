@@ -55,11 +55,15 @@
       overrideFolders = true;
       devices = {
         "leon" = {id = "ZQKAEAR-XVONVAP-QXGZ5HN-MDKS4MK-QPSFOCN-SBQKBYM-UZAH7UO-FD7FMAM";};
+        "phone" = {id = "QARPS3W-IKYPFPP-LGN2CWQ-LJFMN36-RDYFFPN-CKTP7RD-3EQ6Y64-Z3IKDAR";};
       };
       folders = {
         "Org" = {
           path = "/home/user/Documents/Org";
-          devices = ["leon"];
+          devices = [
+            "leon"
+            "phone"
+          ];
           versioning = {
             type = "simple";
             params = {

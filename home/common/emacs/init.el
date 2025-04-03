@@ -7,6 +7,7 @@
 
 (setq display-line-numbers-type 'relative)
 (global-display-line-numbers-mode)
+(set-frame-font "Hack Nerd Font Mono 10" nil t)
 
 ;; Built-ins
 (require 'which-key)
@@ -125,6 +126,12 @@
   (require 'evil-org-agenda)
   (evil-org-agenda-set-keys))
 
+(use-package orderless
+  :ensure t
+  :custom
+  (completion-styles '(orderless basic))
+  (completion-category-overrides '((file (styles basic partial-completion)))))
+
 (use-package org-bullets
   :after org
   :hook (org-mode . org-bullets-mode))
@@ -138,6 +145,13 @@
   :init
   (savehist-mode))
 
+(use-package treesit-auto
+  :custom
+  (treesit-auto-install 'prompt)
+  :config
+  (treesit-auto-add-to-auto-mode-alist 'all)
+  (global-treesit-auto-mode))
+
 (use-package vertico
   :bind (:map vertico-map
 	  ("C-j" . vertico-next)
@@ -148,3 +162,7 @@
   :init
   (vertico-mode))
 
+(use-package vterm
+  :ensure t
+  :bind (("M-RET" . vterm))
+)

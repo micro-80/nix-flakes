@@ -20,8 +20,11 @@
         magit
         marginalia
         lsp-mode
+        orderless
         org-bullets
+        treesit-auto
         vertico
+        vterm
       ])
       ++ (with epkgs.manualPackages; [
         treesit-grammars.with-all-grammars
