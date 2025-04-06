@@ -4,6 +4,7 @@
 (toggle-scroll-bar -1) 
 (tool-bar-mode -1) 
 (transient-mark-mode 1)
+(global-visual-line-mode 1)
 
 (setq display-line-numbers-type 'relative)
 (global-display-line-numbers-mode)
@@ -13,7 +14,6 @@
 (require 'which-key)
 (which-key-mode)
 
-(setq evil-want-C-i-jump nil)
 (require 'org)
 (setq org-indent-mode t)
 (setq org-agenda-files '("~/Documents/Org/daily.org"))
@@ -31,6 +31,11 @@
      "IN PROGRESS"
      "DONE"
      )))
+
+(defun open-file-from-org-dir ()
+  (interactive)
+  (find-file org-directory))
+(global-set-key (kbd "C-c o") 'open-file-from-org-dir)
 
 ;; Plugins
 
@@ -102,7 +107,6 @@
   (setq xref-show-xrefs-function #'consult-xref
         xref-show-definitions-function #'consult-xref)
   :config
-
   (consult-customize
    consult-theme :preview-key '(:debounce 0.2 any)
    consult-ripgrep consult-git-grep consult-grep consult-man
@@ -113,18 +117,6 @@
 
   (setq consult-narrow-key "<") ;; "C-+"
 )
-
-(use-package evil
-    :config 
-    (evil-mode 1)
-    (evil-set-leader 'normal (kbd "SPC")))
-
-(use-package evil-org
-  :after org
-  :hook (org-mode . evil-org-mode)
-  :config
-  (require 'evil-org-agenda)
-  (evil-org-agenda-set-keys))
 
 (use-package orderless
   :ensure t
@@ -153,10 +145,6 @@
   (global-treesit-auto-mode))
 
 (use-package vertico
-  :bind (:map vertico-map
-	  ("C-j" . vertico-next)
-	  ("C-k" . vertico-previous)
-	  ("C-x" . vertico-exit))
   :custom
   (vertico-cycle t)
   :init

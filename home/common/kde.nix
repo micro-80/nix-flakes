@@ -38,6 +38,7 @@
           longitude = "-0.69";
         };
         mode = "location";
+	temperature.night = 3000;
       };
     };
 

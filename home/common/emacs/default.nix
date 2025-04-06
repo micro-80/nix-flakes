@@ -15,8 +15,6 @@
       ++ (with epkgs.melpaPackages; [
         catppuccin-theme
         consult
-        evil
-        evil-org
         magit
         marginalia
         lsp-mode

@@ -26,8 +26,11 @@
     pavucontrol
     picard
     prismlauncher
+    protontricks
     qbittorrent
+    steamtinkerlaunch
     ungoogled-chromium
+    unrar
     unzip
     wl-clipboard
     vesktop
