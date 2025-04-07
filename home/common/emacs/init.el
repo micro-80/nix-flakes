@@ -118,8 +118,26 @@
   (setq consult-narrow-key "<") ;; "C-+"
 )
 
+(use-package evil
+  :init
+  (setq evil-want-integration t) ;; This is optional since it's already set to t by default.
+  (setq evil-want-keybinding nil)
+  :config
+  (evil-mode 1)
+)
+
+(use-package evil-collection
+  :after evil
+  :config
+  (evil-collection-init)
+)
+
+(use-package marginalia
+  :after vertico
+  :init
+  (marginalia-mode))
+
 (use-package orderless
-  :ensure t
   :custom
   (completion-styles '(orderless basic))
   (completion-category-overrides '((file (styles basic partial-completion)))))
@@ -128,10 +146,15 @@
   :after org
   :hook (org-mode . org-bullets-mode))
 
-(use-package marginalia
-  :after vertico
+(use-package pdf-tools
   :init
-  (marginalia-mode))
+  (pdf-tools-install)
+  :hook
+  (pdf-view-mode . (lambda () (display-line-numbers-mode -1)))
+  :config 
+  (use-package org-pdftools
+    :hook (org-mode . org-pdftools-setup-link))
+)
 
 (use-package savehist
   :init
@@ -151,6 +174,5 @@
   (vertico-mode))
 
 (use-package vterm
-  :ensure t
   :bind (("M-RET" . vterm))
 )

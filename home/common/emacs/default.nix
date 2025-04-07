@@ -15,11 +15,15 @@
       ++ (with epkgs.melpaPackages; [
         catppuccin-theme
         consult
+	evil
+	evil-collection
         magit
         marginalia
         lsp-mode
         orderless
         org-bullets
+	org-pdftools
+	pdf-tools
         treesit-auto
         vertico
         vterm
