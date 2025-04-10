@@ -56,29 +56,6 @@
     user = "user";
     group = "users";
     guiAddress = "0.0.0.0:8384";
-    declarative = {
-      overrideDevices = true;
-      overrideFolders = true;
-      devices = {
-        "aiko" = {id = "UW32GUQ-YS2BZLZ-F4II4TS-ENYYO74-HQLHZGB-CBE5K74-I6XALAT-I3ZPVAO";};
-        "phone" = {id = "QARPS3W-IKYPFPP-LGN2CWQ-LJFMN36-RDYFFPN-CKTP7RD-3EQ6Y64-Z3IKDAR";};
-      };
-      folders = {
-        "Org" = {
-          path = "/home/user/Documents/Org";
-          devices = [
-            "aiko"
-            "phone"
-          ];
-          versioning = {
-            type = "simple";
-            params = {
-              keep = "10";
-            };
-          };
-        };
-      };
-    };
   };
 
   system.stateVersion = "24.11";

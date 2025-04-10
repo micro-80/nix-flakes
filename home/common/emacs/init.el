@@ -8,7 +8,11 @@
 
 (setq display-line-numbers-type 'relative)
 (global-display-line-numbers-mode)
-(set-frame-font "Hack Nerd Font Mono 10" nil t)
+
+(if (string= system-name "aiko")
+    (set-frame-font "Hack Nerd Font Mono 12" nil t)   
+  (set-frame-font "Hack Nerd Font Mono 10" nil t))
+
 
 ;; Built-ins
 (require 'which-key)

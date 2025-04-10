@@ -5,10 +5,10 @@
   ...
 }: {
   imports = [
+    ../kde.nix
     ../common/cli
     ../common/cli/linux.nix
     ../common/emacs
-    ../common/kde.nix
     ../common/linux.nix
     ../common/packages.nix
   ];
@@ -18,6 +18,7 @@
   home.packages = with pkgs; [
     bottles
     eddie
+    firefox
     htop
     mpv
     nicotine-plus

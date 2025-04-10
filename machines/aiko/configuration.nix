@@ -33,45 +33,23 @@
   services.thermald.enable = true;
   services.tlp.enable = true;
 
-  # Enable the X11 windowing system.
-  # You can disable this if you're only using the Wayland session.
-  # services.xserver.enable = true;
-
-  # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
-  services.displayManager.sddm.wayland.enable = true;
-  services.desktopManager.plasma6.enable = true;
+  security.polkit.enable = true;
+  services.greetd = {
+    enable = true;
+    settings = {
+      default_session = {
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd sway";
+        user = "greeter";
+      };
+    };
+  };
 
   services.syncthing = {
     enable = true;
     dataDir = "/home/user/Documents";
-    #openDefaultPorts = true;
     configDir = "/home/user/.config/syncthing";
     user = "user";
     group = "users";
     guiAddress = "0.0.0.0:8384";
-    declarative = {
-      overrideDevices = true;
-      overrideFolders = true;
-      devices = {
-        "leon" = {id = "ZQKAEAR-XVONVAP-QXGZ5HN-MDKS4MK-QPSFOCN-SBQKBYM-UZAH7UO-FD7FMAM";};
-        "phone" = {id = "QARPS3W-IKYPFPP-LGN2CWQ-LJFMN36-RDYFFPN-CKTP7RD-3EQ6Y64-Z3IKDAR";};
-      };
-      folders = {
-        "Org" = {
-          path = "/home/user/Documents/Org";
-          devices = [
-            "leon"
-            "phone"
-          ];
-          versioning = {
-            type = "simple";
-            params = {
-              keep = "10";
-            };
-          };
-        };
-      };
-    };
   };
 }

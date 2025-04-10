@@ -11,8 +11,4 @@
 
     spotify
   ];
-
-  programs = {
-    firefox.enable = true;
-  };
 }
