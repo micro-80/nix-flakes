@@ -18,8 +18,18 @@
     syncthing-gui = "${pkgs.firefox}/bin/firefox -private-window http://localhost:8384";
   };
 
-  services.gnome-keyring.enable = true;
   programs.swaylock.enable = true;
+  services.swayidle = {
+    enable = true;
+    events = [
+      {
+        event = "before-sleep";
+        command = "${pkgs.swaylock-effects}/bin/swaylock --screenshots --effect-blur 7x5 --effect-vignette 0.5:0.5 --fade-in 0.2";
+      }
+    ];
+  };
+
+  services.gnome-keyring.enable = true;
   wayland.windowManager.sway = {
     enable = true;
     wrapperFeatures.gtk = true;
