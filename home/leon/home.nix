@@ -5,7 +5,7 @@
   ...
 }: {
   imports = [
-    ../kde.nix
+    ./kde.nix
     ../common/cli
     ../common/cli/linux.nix
     ../common/emacs
@@ -16,10 +16,12 @@
   home.homeDirectory = "/home/user";
 
   home.packages = with pkgs; [
+    audacity
     bottles
     eddie
     firefox
     htop
+    kdePackages.kdenlive
     mpv
     nicotine-plus
     rpcs3

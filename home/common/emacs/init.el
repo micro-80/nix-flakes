@@ -13,6 +13,8 @@
     (set-frame-font "Hack Nerd Font Mono 12" nil t)   
   (set-frame-font "Hack Nerd Font Mono 10" nil t))
 
+;; Behaviours
+(setq auto-save-file-name-transforms '((".*" "~/.emacs-saves/" t)))
 
 ;; Built-ins
 (require 'which-key)
@@ -42,6 +44,13 @@
 (global-set-key (kbd "C-c o") 'open-file-from-org-dir)
 
 ;; Plugins
+(use-package cape
+  :bind ("C-c p" . cape-prefix-map) ;; Alternative key: M-<tab>, M-p, M-+
+  :init
+  (add-hook 'completion-at-point-functions #'cape-dabbrev)
+  (add-hook 'completion-at-point-functions #'cape-file)
+  (add-hook 'completion-at-point-functions #'cape-elisp-block)
+)
 
 (use-package catppuccin-theme
     :config
@@ -122,6 +131,32 @@
   (setq consult-narrow-key "<") ;; "C-+"
 )
 
+(use-package corfu
+  ;; Optional customizations
+  :custom
+  (corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
+  :init
+  (global-corfu-mode)
+  ;; Enable optional extension modes:
+  ;; (corfu-history-mode)
+  ;; (corfu-popupinfo-mode)
+  )
+
+(use-package emacs
+  :custom
+  (tab-always-indent 'complete)
+  ;; Emacs 30 and newer: Disable Ispell completion function.
+  ;; Try `cape-dict' as an alternative.
+  (text-mode-ispell-word-completion nil)
+
+  ;; Hide commands in M-x which do not apply to the current mode.  Corfu
+  ;; commands are hidden, since they are not used via M-x. This setting is
+  ;; useful beyond Corfu.
+  (read-extended-command-predicate #'command-completion-default-include-p))
+
+(use-package envrc
+  :hook (after-init . envrc-global-mode))
+
 (use-package evil
   :init
   (setq evil-want-integration t) ;; This is optional since it's already set to t by default.
@@ -136,6 +171,27 @@
   (evil-collection-init)
 )
 
+(use-package flycheck
+  :init (global-flycheck-mode))
+
+(use-package lsp-mode
+  :custom
+  (lsp-completion-provider :none) ;; we use Corfu!
+  :init
+  (defun my/lsp-mode-setup-completion ()
+  (setf (alist-get 'styles (alist-get 'lsp-capf completion-category-defaults))
+        '(orderless))) ;; Configure orderless
+  :hook (
+         (lsp-completion-mode . my/lsp-mode-setup-completion)
+	 ((c++-ts-mode python-ts-mode java-ts-mode js-ts-mode) . lsp-deferred)
+  )
+  :commands lsp)
+
+(use-package lsp-java :config (add-hook 'java-mode-hook 'lsp))
+
+(use-package lsp-ui
+  :commands lsp-ui-mode)
+
 (use-package marginalia
   :after vertico
   :init
@@ -143,8 +199,9 @@
 
 (use-package orderless
   :custom
-  (completion-styles '(orderless basic))
-  (completion-category-overrides '((file (styles basic partial-completion)))))
+  (completion-styles '(orderless partial-completion basic))
+  (completion-category-defaults nil)
+  (completion-category-overrides nil))
 
 (use-package org-bullets
   :after org
@@ -160,16 +217,21 @@
     :hook (org-mode . org-pdftools-setup-link))
 )
 
+(use-package pdf-view-restore
+  :after pdf-tools
+  :config
+  (add-hook 'pdf-view-mode-hook 'pdf-view-restore-mode))
+
 (use-package savehist
   :init
   (savehist-mode))
 
 (use-package treesit-auto
-  :custom
-  (treesit-auto-install 'prompt)
-  :config
-  (treesit-auto-add-to-auto-mode-alist 'all)
-  (global-treesit-auto-mode))
+        :custom
+        (treesit-auto-install 'prompt)
+        :config
+        (treesit-auto-add-to-auto-mode-alist 'all)
+        (global-treesit-auto-mode))
 
 (use-package vertico
   :custom

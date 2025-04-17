@@ -3,6 +3,10 @@
   pkgs,
   ...
 }: {
+  imports = [
+    ./lsp.nix
+  ];
+  
   services.emacs.enable = true;
 
   programs.emacs = {
@@ -13,22 +17,29 @@
         use-package
       ])
       ++ (with epkgs.melpaPackages; [
+        cape
         catppuccin-theme
         consult
+	corfu
+	envrc
         evil
         evil-collection
+	flycheck
         magit
         marginalia
+	lsp-java
         lsp-mode
+        lsp-ui
         orderless
         org-bullets
         org-pdftools
         pdf-tools
-        treesit-auto
+	pdf-view-restore
+	treesit-auto
         vertico
         vterm
       ])
-      ++ (with epkgs.manualPackages; [
+      ++ (with epkgs; [
         treesit-grammars.with-all-grammars
       ]);
     extraConfig = builtins.readFile ./init.el;
