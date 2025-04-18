@@ -174,6 +174,13 @@
 (use-package flycheck
   :init (global-flycheck-mode))
 
+(use-package jinx
+  :hook(
+	(markdown-mode . jinx-mode)
+	(org-mode . jinx-mode)
+	)
+)
+
 (use-package lsp-mode
   :custom
   (lsp-completion-provider :none) ;; we use Corfu!

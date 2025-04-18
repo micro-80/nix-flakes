@@ -6,9 +6,10 @@
   imports = [
     ./lsp.nix
   ];
-  
+
   services.emacs.enable = true;
 
+  home.packages = with pkgs; [hunspell hunspellDicts.en_GB-ise];
   programs.emacs = {
     enable = true;
     package = pkgs.emacs-pgtk;
@@ -20,22 +21,23 @@
         cape
         catppuccin-theme
         consult
-	corfu
-	envrc
+        corfu
+        envrc
         evil
         evil-collection
-	flycheck
+        flycheck
+        jinx
         magit
         marginalia
-	lsp-java
+        lsp-java
         lsp-mode
         lsp-ui
         orderless
         org-bullets
         org-pdftools
         pdf-tools
-	pdf-view-restore
-	treesit-auto
+        pdf-view-restore
+        treesit-auto
         vertico
         vterm
       ])

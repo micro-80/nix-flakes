@@ -29,6 +29,7 @@
     ];
   };
 
+  home.packages = with pkgs; [brightnessctl];
   services.gnome-keyring.enable = true;
   wayland.windowManager.sway = {
     enable = true;
@@ -37,18 +38,23 @@
       modifier = "Mod4";
       terminal = "alacritty";
       startup = [
+        {command = "${pkgs.avizo}/bin/avizo-service";}
         {command = "emacs";}
       ];
       assigns = {
         "1" = [{app_id = "alacritty";}];
-        "2" = [{app_id = "emacs";}];
+        "2" = [{app_id = "firefox";}];
+        "3" = [{app_id = "emacs";}];
       };
       keybindings = let
         modifier = config.wayland.windowManager.sway.config.modifier;
       in
         lib.mkOptionDefault {
-          "XF86MonBrightnessDown" = "${pkgs.brightnessctl}/bin/brightnessctl set 5%-";
-          "XF86MonBrightnessUp" = "${pkgs.brightnessctl}/bin/brightnessctl set 5%+";
+          "XF86MonBrightnessUp" = "exec ${pkgs.avizo}/bin/lightctl up";
+          "XF86MonBrightnessDown" = "exec ${pkgs.avizo}/bin/lightctl down";
+          "XF86AudioRaiseVolume" = "exec ${pkgs.avizo}/bin/volumectl -u up";
+          "XF86AudioLowerVolume" = "exec ${pkgs.avizo}/bin/volumectl -u down";
+          "XF86AudioMute" = "exec ${pkgs.avizo}/bin/volumectl toggle-mute";
         };
       input = {
         "type:touchpad" = {
