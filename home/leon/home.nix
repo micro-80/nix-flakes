@@ -19,7 +19,6 @@
     audacity
     bottles
     eddie
-    firefox
     htop
     kdePackages.kdenlive
     mpv

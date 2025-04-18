@@ -43,6 +43,18 @@
         "1" = [{app_id = "alacritty";}];
         "2" = [{app_id = "emacs";}];
       };
+      keybindings = let
+        modifier = config.wayland.windowManager.sway.config.modifier;
+      in
+        lib.mkOptionDefault {
+          "XF86MonBrightnessDown" = "${pkgs.brightnessctl}/bin/brightnessctl set 5%-";
+          "XF86MonBrightnessUp" = "${pkgs.brightnessctl}/bin/brightnessctl set 5%+";
+        };
+      input = {
+        "type:touchpad" = {
+          tap = "enabled";
+        };
+      };
       output = {
         eDP-1 = {
           scale = "1.0";
