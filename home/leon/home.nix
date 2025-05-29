@@ -8,7 +8,6 @@
     ./kde.nix
     ../common/cli
     ../common/cli/linux.nix
-    ../common/emacs
     ../common/linux.nix
     ../common/packages.nix
   ];
@@ -16,6 +15,7 @@
   home.homeDirectory = "/home/user";
 
   home.packages = with pkgs; [
+    anki
     audacity
     bottles
     eddie

@@ -25,6 +25,17 @@
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
+  i18n.inputMethod = {
+    type = "fcitx5";
+    enable = true;
+    fcitx5 = {
+      addons = with pkgs; [
+        fcitx5-mozc
+        kdePackages.fcitx5-qt
+      ];
+      waylandFrontend = true;
+    };
+  };
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 

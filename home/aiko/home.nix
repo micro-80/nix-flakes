@@ -7,7 +7,6 @@
   imports = [
     ../common/cli
     ../common/cli/linux.nix
-    ../common/emacs
     ../common/linux.nix
     ../common/packages.nix
   ];
@@ -39,12 +38,10 @@
       terminal = "alacritty";
       startup = [
         {command = "${pkgs.avizo}/bin/avizo-service";}
-        {command = "emacs";}
       ];
       assigns = {
         "1" = [{app_id = "alacritty";}];
         "2" = [{app_id = "firefox";}];
-        "3" = [{app_id = "emacs";}];
       };
       keybindings = let
         modifier = config.wayland.windowManager.sway.config.modifier;

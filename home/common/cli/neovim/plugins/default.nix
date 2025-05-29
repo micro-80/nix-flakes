@@ -4,7 +4,7 @@
     ./catppuccin.nix
     ./cmp.nix
     ./lsp.nix
-    ./orgmode.nix
+    ./oil.nix
     ./telescope.nix
     ./treesitter.nix
   ];
