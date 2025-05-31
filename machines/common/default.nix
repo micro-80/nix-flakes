@@ -32,22 +32,6 @@
     variant = "";
   };
 
-  # Printing
-  services.printing.enable = true;
-  services.printing.browsing = true;
-  services.printing.browsedConf = ''
-    BrowseDNSSDSubTypes _cups,_print
-    BrowseLocalProtocols all
-    BrowseRemoteProtocols all
-    CreateIPPPrinterQueues All
-
-    BrowseProtocols all
-  '';
-  services.avahi = {
-    enable = true;
-    nssmdns = true;
-  };
-
   # Pipewire
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;

@@ -4,7 +4,7 @@
     web-devicons.enable = true;
     telescope = {
       enable = true;
-      defaults.mappings = {
+      settings.defaults.mappings = {
         i = {
           "<esc>".__raw = "require('telescope.actions').close";
           "<C-j>".__raw = "require('telescope.actions').move_selection_next";

@@ -15,12 +15,15 @@
         "<leader>j" = "goto_next";
       };
     };
-    #servers = {
-    #  rust_analyzer = {
-    #    enable = true;
-    #    installCargo = false;
-    #    installRustc = false;
-    #  };
-    #};
+    servers = {
+      bashls = {
+        enable = true;
+      };
+      rust_analyzer = {
+        enable = true;
+        installCargo = false;
+        installRustc = false;
+      };
+    };
   };
 }
