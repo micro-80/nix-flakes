@@ -4,23 +4,18 @@
   };
   programs.nixvim.keymaps = [
     {
-      key = "<A-w>";
-      action = ":lua require('bufferline.commands').unpin_and_close()";
-      options.silent = true;
-    }
-    {
       key = "<A-m-j>";
-      action = ":BufferLineMoveNext";
+      action = ":BufferLineMoveNext<CR>";
       options.silent = true;
     }
     {
       key = "<A-m-k>";
-      action = ":BufferLineMovePrev";
+      action = ":BufferLineMovePrev<CR>";
       options.silent = true;
     }
     {
       key = "<A-p>";
-      action = ":BufferLineTogglePin";
+      action = ":BufferLineTogglePin<CR>";
       options.silent = true;
     }
 
