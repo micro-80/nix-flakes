@@ -8,10 +8,20 @@
     ./hardware-configuration.nix
   ];
 
-  boot.kernelParams = [
-    "resume=LABEL=swap"
-    "quiet"
-    "splash"
+  boot = {
+    initrd.luks.devices."luks-44652c72-7e31-4b04-8095-5bdd8add98c3".device = "/dev/disk/by-uuid/44652c72-7e31-4b04-8095-5bdd8add98c3";
+    resumeDevice = "/dev/disk/by-uuid/0f13a5dd-2a0e-4574-babe-571bab7b55b7";
+    kernelParams = [
+      "resume=UUID=0f13a5dd-2a0e-4574-babe-571bab7b55b7"
+      "quiet"
+      "splash"
+    ];
+  };
+
+  swapDevices = [
+    {
+      device = "/dev/disk/by-uuid/0f13a5dd-2a0e-4574-babe-571bab7b55b7";
+    }
   ];
 
   hardware.bluetooth.enable = false;
@@ -33,24 +43,10 @@
   services.thermald.enable = true;
   services.tlp.enable = true;
 
-  security.pam.services.swaylock = {};
-  security.polkit.enable = true;
-  services.greetd = {
-    enable = true;
-    settings = {
-      default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd sway";
-        user = "greeter";
-      };
-    };
-  };
+  # Enable the X11 windowing system.
+  services.xserver.enable = true;
 
-  services.syncthing = {
-    enable = true;
-    dataDir = "/home/user/Documents";
-    configDir = "/home/user/.config/syncthing";
-    user = "user";
-    group = "users";
-    guiAddress = "0.0.0.0:8384";
-  };
+  # Enable the GNOME Desktop Environment.
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
 }

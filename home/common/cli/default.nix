@@ -10,8 +10,6 @@
   ];
 
   home.packages = with pkgs; [
-    nerd-fonts.hack
-
     gh
     jq
   ];
