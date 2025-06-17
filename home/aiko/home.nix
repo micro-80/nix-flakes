@@ -20,7 +20,15 @@
       "org/gnome/desktop/wm/preferences".num-workspaces = 4;
 
       "org/gnome/shell/keybindings" = {
-        "toggle-application-view" = [];
+        "switch-to-application-1" = [];
+        "switch-to-application-2" = [];
+        "switch-to-application-3" = [];
+        "switch-to-application-4" = [];
+        "switch-to-application-5" = [];
+        "switch-to-application-6" = [];
+        "switch-to-application-7" = [];
+        "switch-to-application-8" = [];
+        "switch-to-application-9" = [];
       };
       "org/gnome/desktop/wm/keybindings" = {
         "switch-to-workspace-1" = ["<Super>1"];
@@ -50,10 +58,20 @@
 
       "org/gnome/desktop/interface" = {
         "enable-hot-corners" = false;
+        "show-battery-percentage" = true;
       };
 
-      "org/gnome/settings-daemon/peripherals/keyboard" = {
-        "ambient-light-sensor-enabled" = false;
+      "org/gnome/settings-daemon/plugins/power" = {
+        "ambient-enabled" = false;
+        "sleep-inactive-ac-type" = "nothing";
+      };
+
+      "org.gnome.settings-daemon.plugins.nightlight" = {
+        enabled = true;
+        temperature = 3000;
+        time-enabled = true;
+        start-time = 19;
+        end-time = 6;
       };
     };
   };
