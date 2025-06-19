@@ -26,7 +26,7 @@
           italic.family = "Hack Nerd Font Mono";
         };
         general.import = [
-          "${pkgs.alacritty-theme}/catppuccin_macchiato.toml"
+          "${pkgs.alacritty-theme}/share/alacritty-theme/catppuccin_macchiato.toml"
         ];
         terminal.shell = {
           program = "${pkgs.tmux}/bin/tmux";

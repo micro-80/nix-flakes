@@ -7,6 +7,7 @@
     ./lsp.nix
     ./lualine.nix
     ./oil.nix
+    ./tablemode.nix
     ./telescope.nix
     ./treesitter.nix
   ];

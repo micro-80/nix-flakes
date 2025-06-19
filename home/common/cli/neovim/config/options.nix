@@ -1,5 +1,6 @@
 {...}: {
   programs.nixvim.opts = {
+    clipboard = "unnamedplus";
     incsearch = true;
     number = true;
     relativenumber = true;

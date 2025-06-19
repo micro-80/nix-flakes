@@ -5,8 +5,6 @@
 }: {
   environment.darwinConfig = "$HOME/.flakes/machines/work";
 
-  # Auto upgrade nix package and the daemon service.
-  services.nix-daemon.enable = true;
   nix = {
     package = pkgs.nix;
     settings = {
@@ -35,12 +33,11 @@
     ];
     casks = [
       "alacritty"
-      "bruno"
       "keepassxc"
       "linearmouse"
       "nikitabobko/tap/aerospace"
       "intellij-idea"
-      "obsidian"
+      "postman"
       "temurin@11"
     ];
     taps = [
@@ -53,6 +50,7 @@
 
   programs.fish.enable = true;
 
+  system.primaryUser = "mgn25";
   users.users.mgn25 = {
     name = "mgn25";
     home = "/Users/mgn25";

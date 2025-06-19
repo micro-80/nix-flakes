@@ -96,6 +96,9 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
+            home-manager.sharedModules = [
+              nixvim.homeManagerModules.nixvim
+            ];
             home-manager.users.mgn25 = import ./home/work/home.nix;
           }
         ];

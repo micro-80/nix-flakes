@@ -51,7 +51,7 @@
       };
       "github-personal" = {
         hostname = "github.com";
-        identityFile = "~/.ssh/id_ed25519-prophetarmed";
+        identityFile = "~/.ssh/id_ed25519_prophetarmed";
         user = "prophetarmed";
       };
     };

@@ -16,6 +16,7 @@
     '';
 
     shellAliases = {
+      darwinRebuild = "sudo darwin-rebuild switch --flake .#";
       nixosRebuild = "sudo nixos-rebuild switch --flake .#";
       nixosUpdate = "sudo nixos-rebuild switch --recreate-lock-file --flake .";
     };
