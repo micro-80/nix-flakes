@@ -7,6 +7,7 @@
   imports = [
     ../common/cli
     ../common/cli/linux.nix
+    ../common/emacs
     ../common/linux.nix
     ../common/packages.nix
   ];
@@ -18,6 +19,7 @@
     settings = {
       "org/gnome/desktop/interface".color-scheme = "prefer-dark";
       "org/gnome/desktop/wm/preferences".num-workspaces = 4;
+      "org/gnome/desktop/peripherals/touchpad".natural-scroll = false;
 
       "org/gnome/shell/keybindings" = {
         "switch-to-application-1" = [];
