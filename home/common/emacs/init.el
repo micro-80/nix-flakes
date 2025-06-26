@@ -18,6 +18,7 @@
 ;; 2. options
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
+(set-face-attribute 'default nil :height 140)
 (tool-bar-mode -1)
 (setq inhibit-startup-screen t)
 (setq initial-scratch-message nil)
@@ -104,6 +105,10 @@
   (setq completion-styles '(orderless)
         completion-category-defaults nil
         completion-category-overrides '((file (styles . (partial-completion))))))
+
+(use-package org
+  :config
+  (add-to-list 'org-modules 'org-tempo))
 
 (use-package treesit-auto
   :config

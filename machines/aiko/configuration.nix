@@ -24,7 +24,7 @@
     }
   ];
 
-  hardware.bluetooth.enable = false;
+  hardware.bluetooth.enable = true;
   hardware.cpu.intel.updateMicrocode = true;
 
   services.logind.lidSwitch = "suspend-then-hibernate";
