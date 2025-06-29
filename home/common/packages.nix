@@ -5,6 +5,8 @@
   ...
 }: {
   home.packages = with pkgs; [
+    firefox
     fastfetch
+    spotify
   ];
 }

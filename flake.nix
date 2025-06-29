@@ -17,11 +17,6 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    plasma-manager = {
-      url = "github:nix-community/plasma-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
-    };
   };
 
   outputs = inputs @ {
@@ -30,7 +25,6 @@
     home-manager,
     nix-darwin,
     nixvim,
-    plasma-manager,
     ...
   }: {
     formatter.aarch64-darwin = nixpkgs.legacyPackages.aarch64-darwin.alejandra;
@@ -55,7 +49,6 @@
             home-manager.useUserPackages = true;
             home-manager.sharedModules = [
               nixvim.homeManagerModules.nixvim
-              plasma-manager.homeManagerModules.plasma-manager
             ];
             home-manager.users.user = import ./home/aiko/home.nix;
           }
@@ -77,7 +70,6 @@
             home-manager.useUserPackages = true;
             home-manager.sharedModules = [
               nixvim.homeManagerModules.nixvim
-              plasma-manager.homeManagerModules.plasma-manager
             ];
             home-manager.users.user = import ./home/leon/home.nix;
           }
@@ -86,6 +78,23 @@
     };
 
     darwinConfigurations = {
+      "frank" = nix-darwin.lib.darwinSystem {
+        system = "aarch64-darwin";
+        specialArgs = {inherit inputs;};
+        modules = [
+          ./machines/frank/darwin.nix
+
+          home-manager.darwinModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.sharedModules = [
+              nixvim.homeManagerModules.nixvim
+            ];
+            home-manager.users.user = import ./home/frank/home.nix;
+          }
+        ];
+      };
       "UKR4C7RQ747H" = nix-darwin.lib.darwinSystem {
         system = "aarch64-darwin";
         specialArgs = {inherit inputs;};

@@ -12,6 +12,7 @@
   home.packages = with pkgs; [
     gh
     jq
+    nerd-fonts.hack
   ];
 
   programs = {
@@ -62,24 +63,24 @@
       plugins = with pkgs; [
         tmuxPlugins.better-mouse-mode
         tmuxPlugins.sensible
-        {
-          plugin = tmuxPlugins.catppuccin;
-          extraConfig = "set -g @catppuccin_flavor 'macchiato'";
-        }
+        tmuxPlugins.catppuccin
       ];
+      # CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
       extraConfig = ''
-        set-option -sa terminal-overrides ",alacritty*:Tc"
+        run-shell "/nix/store/8ivrpmp3arvxbr6imdwm2d28q9cjsqvi-bash-5.2p37/bin/bash -c 'echo $BASH_SOURCE'"
+               set-option -sa terminal-overrides ",alacritty*:Tc"
+               set -g @catppuccin_flavor 'macchiato'
 
-        bind-key -n M-! select-window -t 1
-        bind-key -n M-@ select-window -t 2
-        bind-key -n M-# select-window -t 3
-        bind-key -n M-$ select-window -t 4
-        bind-key -n M-% select-window -t 5
-        bind-key -n M-^ select-window -t 6
-        bind-key -n M-& select-window -t 7
-        bind-key -n M-* select-window -t 8
-        bind-key -n M-( select-window -t 9
-        bind-key -n M-) select-window -t 0
+               bind-key -n M-! select-window -t 1
+               bind-key -n M-@ select-window -t 2
+               bind-key -n M-# select-window -t 3
+               bind-key -n M-$ select-window -t 4
+               bind-key -n M-% select-window -t 5
+               bind-key -n M-^ select-window -t 6
+               bind-key -n M-& select-window -t 7
+               bind-key -n M-* select-window -t 8
+               bind-key -n M-( select-window -t 9
+               bind-key -n M-) select-window -t 0
       '';
     };
   };
