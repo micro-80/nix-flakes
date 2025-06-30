@@ -1,5 +1,6 @@
 {
   config,
+  inputs,
   pkgs,
   ...
 }: {
@@ -54,6 +55,13 @@
 
   # Nix settings
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.overlays = [
+    inputs.nix-vscode-extensions.overlays.default
+
+    (final: prev: {
+      nix-vscode-extensions = inputs.nix-vscode-extensions.packages.${prev.system};
+    })
+  ];
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
   # Shell

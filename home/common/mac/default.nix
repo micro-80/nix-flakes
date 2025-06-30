@@ -8,6 +8,7 @@
     ../cli
     ../emacs
     ../packages.nix
+    ../vscode.nix
   ];
 
   home.packages = with pkgs; [obsidian];
