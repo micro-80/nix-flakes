@@ -11,6 +11,7 @@
     };
 
     interactiveShellInit = ''
+      set fish_greeting
       abbr -a !! --position anywhere --function last_history_item
       ${pkgs.any-nix-shell}/bin/any-nix-shell fish --info-right | source
     '';

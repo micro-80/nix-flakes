@@ -30,12 +30,10 @@
           "${pkgs.alacritty-theme}/share/alacritty-theme/catppuccin_macchiato.toml"
         ];
         terminal.shell = {
-          program = "${pkgs.tmux}/bin/tmux";
+          program = "${pkgs.bash}/bin/bash";
           args = [
-            "new-session"
-            "-A"
-            "-s"
-            "general"
+            "-c"
+            "${pkgs.tmux}/bin/tmux attach || ${pkgs.tmux}/bin/tmux"
           ];
         };
         window = {
@@ -60,14 +58,13 @@
       historyLimit = 100000;
       mouse = true;
       prefix = "C-a";
+      shell = "${pkgs.fish}/bin/fish";
       plugins = with pkgs; [
         tmuxPlugins.better-mouse-mode
         tmuxPlugins.sensible
         tmuxPlugins.catppuccin
       ];
-      # CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
       extraConfig = ''
-        run-shell "/nix/store/8ivrpmp3arvxbr6imdwm2d28q9cjsqvi-bash-5.2p37/bin/bash -c 'echo $BASH_SOURCE'"
                set-option -sa terminal-overrides ",alacritty*:Tc"
                set -g @catppuccin_flavor 'macchiato'
 

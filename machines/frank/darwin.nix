@@ -3,6 +3,10 @@
   pkgs,
   ...
 }: {
+  imports = [
+    ../common/mac
+  ];
+
   environment.darwinConfig = "$HOME/.flakes/machines/frank";
 
   homebrew = {

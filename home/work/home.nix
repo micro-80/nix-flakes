@@ -57,8 +57,20 @@
     ];
   };
 
-  programs.vscode.profiles.default.userSettings = {
-    "sqldeveloper.connections.tnsConfiguration.path" = "/Users/mgn25/Code";
+  programs.vscode.profiles.default = {
+    extensions = pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+      {
+        name = "sql-developer";
+        publisher = "Oracle";
+        version = "25.1.1";
+        sha256 = "1piqsg56glhg87zj8f7il13p73f4djkvr8gvni80ym5xpvky1ks9";
+      }
+    ];
+
+    userSettings = {
+      sqldeveloper.sqlHistory.historyLimit = 1000;
+      sqldeveloper.connections.tnsConfiguration.path = "/Users/mgn25/Code";
+    };
   };
 
   programs.zsh = {
