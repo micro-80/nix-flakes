@@ -5,27 +5,6 @@
 }: {
   environment.darwinConfig = "$HOME/.flakes/machines/frank";
 
-  nixpkgs.config.allowUnfree = true;
-  nix = {
-    package = pkgs.nix;
-    settings = {
-      "extra-experimental-features" = ["nix-command" "flakes"];
-    };
-  };
-
-  system.defaults = {
-    dock = {
-      autohide = true;
-      orientation = "bottom";
-      show-recents = false;
-      static-only = true;
-    };
-    NSGlobalDomain = {
-      "com.apple.mouse.tapBehavior" = 1;
-      "com.apple.swipescrolldirection" = false;
-    };
-  };
-
   homebrew = {
     enable = true;
     global = {autoUpdate = false;};
@@ -38,8 +17,6 @@
       "bitwig-studio"
     ];
   };
-
-  programs.fish.enable = true;
 
   system.primaryUser = "user";
   users.users.user = {
@@ -99,8 +76,4 @@
     #
     # Alternatively, kill and start them manually.
   '';
-
-  # Used for backwards compatibility, please read the changelog before changing.
-  # $ darwin-rebuild changelog
-  system.stateVersion = 5;
 }

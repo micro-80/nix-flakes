@@ -5,11 +5,8 @@
   ...
 }: {
   imports = [
-    ../common/cli
-    ../common/packages.nix
+    ../common/mac
   ];
-  home.username = "mgn25";
-  home.homeDirectory = "/Users/mgn25";
 
   home.sessionPath = [
     "$HOME/bin"
@@ -65,7 +62,4 @@
       kubeShowVersions = "kubectl get deployment -o json | jq '.items[].metadata.labels | .\"app.kubernetes.io/instance\" + \" - \" + .\"app.kubernetes.io/version\"'";
     };
   };
-
-  home.stateVersion = "24.05";
-  programs.home-manager.enable = true;
 }
