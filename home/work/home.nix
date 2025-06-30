@@ -57,6 +57,10 @@
     ];
   };
 
+  programs.vscode.profiles.default.userSettings = {
+    "sqldeveloper.connections.tnsConfiguration.path" = "/Users/mgn25/Code";
+  };
+
   programs.zsh = {
     shellAliases = {
       kubeShowVersions = "kubectl get deployment -o json | jq '.items[].metadata.labels | .\"app.kubernetes.io/instance\" + \" - \" + .\"app.kubernetes.io/version\"'";
