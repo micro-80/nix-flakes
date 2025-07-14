@@ -7,7 +7,6 @@
   imports = [
     ../common/cli
     ../common/cli/linux.nix
-    ../common/emacs
     ../common/linux.nix
     ../common/packages.nix
   ];

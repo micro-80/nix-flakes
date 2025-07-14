@@ -1,132 +1,69 @@
-;; 1. macOS path config
-(when (and (eq system-type 'darwin)
-           (not (getenv "IN_NIX_SHELL")))
+;; 1. Options
+(setq inhibit-startup-message t
+  visible-bell t)
 
-  ;; a. add Nix-installed Emacs packages to load-path
-  (let* ((default-directory "/nix/store/")
-         (nix-elisp-paths
-          (directory-files default-directory t ".*emacs.*share/emacs/site-lisp$")))
-    (dolist (path nix-elisp-paths)
-      (add-to-list 'load-path path)))
-
-  ;; b. add ~/.nix-profile/bin to exec-path and PATH
-  (let ((nix-profile-bin (expand-file-name "~/.nix-profile/bin")))
-    (when (file-directory-p nix-profile-bin)
-      (setenv "PATH" (concat nix-profile-bin ":" (getenv "PATH")))
-      (add-to-list 'exec-path nix-profile-bin))))
-
-;; 2. options
+;; TODO: order in some way
 (menu-bar-mode -1)
-(scroll-bar-mode -1)
-(set-face-attribute 'default nil :height 140)
 (tool-bar-mode -1)
-(setq inhibit-startup-screen t)
-(setq initial-scratch-message nil)
-(setq ring-bell-function 'ignore)
+(scroll-bar-mode -1)
+(global-auto-revert-mode 1)
+(setq global-auto-revert-non-file-buffers t)
+(global-display-line-numbers-mode 1)
+(save-place-mode 1)
+(setq history-length 25)
+(savehist-mode 1)
 
-;; 3. plugins
-(require 'use-package)
-
-;; Add extra completion backends (cape = Completion At Point Extensions)
-(use-package cape
-  :init
-  ;; Add various capes to completion-at-point-functions
-  (add-to-list 'completion-at-point-functions #'cape-file)    ;; file paths
-  (add-to-list 'completion-at-point-functions #'cape-dabbrev) ;; words in buffer
-  ;; You can add more: cape-keyword, cape-symbol, cape-history, etc.
-)
-
-(use-package catppuccin-theme
-  :config
-  (load-theme 'catppuccin :no-confirm)
-  (setq catppuccin-flavor 'macchiato)
-  (catppuccin-reload)
-)
-
-(use-package consult)
-
-(use-package corfu
-  :init
-  (global-corfu-mode)
-  :custom
-  (corfu-auto t)                 ;; Enable auto popup
-  (corfu-cycle t)                ;; Allows cycling through candidates
-  (corfu-quit-no-match 'separator) ;; Don't quit immediately
-  (corfu-preselect 'prompt))     ;; Show prompt at top
-
+;; 2. Plugins
 (use-package evil
   :init
-  (setq evil-want-integration t)      ;; required by evil-collection
-  (setq evil-want-keybinding nil)     ;; defer to evil-collection
-  (setq evil-want-C-u-scroll t)       ;; emulate Vim C-u scrolling
-  (setq evil-want-C-i-jump t)         ;; tab jump behavior
+  (setq evil-want-integration t)
+  (setq evil-want-keybinding nil)
+  (setq evil-want-C-u-scroll t)
+  (setq evil-want-C-i-jump nil)
   :config
-  (evil-mode 1))
+  (evil-mode 1)
+
+  ;; Use visual line motions even outside of visual-line-mode buffers
+  (evil-global-set-key 'motion "j" 'evil-next-visual-line)
+  (evil-global-set-key 'motion "k" 'evil-previous-visual-line)
+
+  (evil-set-initial-state 'messages-buffer-mode 'normal)
+  (evil-set-initial-state 'dashboard-mode 'normal))
 
 (use-package evil-collection
-  :after (evil consult)
-  :config
-  (setq evil-collection-setup-minibuffer t)
-  (evil-collection-init)
-)
-
-(use-package evil-surround
   :after evil
   :config
-  (global-evil-surround-mode 1))
-
-(use-package evil-commentary
-  :after evil
-  :config
-  (evil-commentary-mode))
-
-(use-package git-auto-commit-mode
-  :custom
-  (gac-automatically-add-new-files-p t)
-  (gac-automatically-push-p t)
-)
-
-(use-package flycheck
-  :hook (after-init . global-flycheck-mode))
-
-(use-package lsp-mode
-  :init
-  :after flycheck
-  (setq lsp-diagnostics-provider :flycheck))
+  (evil-collection-init))
 
 (use-package magit)
 
-(use-package marginalia
-  :init
-  (marginalia-mode))
+(use-package evil-magit
+  :after magit)
 
 (use-package orderless
-  :init
-  (setq completion-styles '(orderless)
-        completion-category-defaults nil
-        completion-category-overrides '((file (styles . (partial-completion))))))
-
-(use-package org
-  :config
-  (add-to-list 'org-modules 'org-tempo))
-
-(use-package treesit-auto
-  :config
-  (global-treesit-auto-mode))
-
-(use-package which-key
-  :config
-  (which-key-mode))
+  :custom
+  ;; Configure a custom style dispatcher (see the Consult wiki)
+  ;; (orderless-style-dispatchers '(+orderless-consult-dispatch orderless-affix-dispatch))
+  ;; (orderless-component-separator #'orderless-escapable-split-on-space)
+  (completion-styles '(orderless basic))
+  (completion-category-defaults nil)
+  (completion-category-overrides '((file (styles partial-completion)))))
 
 (use-package vertico
+  :custom
+  (context-menu-mode t)
+  (enable-recursive-minibuffers t)
+  (read-extended-command-predicate #'command-completion-default-include-p) ;; hide M-x commands which do not work in current mode
+  (minibuffer-prompt-properties
+   '(read-only t cursor-intangible t face minibuffer-prompt))
+  ;; (vertico-count 20) ;; Show more candidates
+  ;; (vertico-resize t) ;; Grow and shrink the Vertico minibuffer
+  ;; (vertico-cycle t) ;; Enable cycling for `vertico-next/previous'
   :init
-  (vertico-mode)
-  :bind
-  (:map vertico-map
-        ("C-j" . vertico-next)
-        ("C-k" . vertico-previous))
-)
+  (vertico-mode))
 
-(use-package vterm
-  :bind
-  ("M-<return>" . vterm))
+(use-package which-key
+  :init (which-key-mode)
+  :diminish which-key-mode
+  :config
+  (setq which-key-idle-delay 0.3))

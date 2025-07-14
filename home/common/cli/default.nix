@@ -65,19 +65,19 @@
         tmuxPlugins.catppuccin
       ];
       extraConfig = ''
-               set-option -sa terminal-overrides ",alacritty*:Tc"
-               set -g @catppuccin_flavor 'macchiato'
+        set-option -sa terminal-overrides ",alacritty*:Tc"
+        set -g @catppuccin_flavor 'macchiato'
 
-               bind-key -n M-! select-window -t 1
-               bind-key -n M-@ select-window -t 2
-               bind-key -n M-# select-window -t 3
-               bind-key -n M-$ select-window -t 4
-               bind-key -n M-% select-window -t 5
-               bind-key -n M-^ select-window -t 6
-               bind-key -n M-& select-window -t 7
-               bind-key -n M-* select-window -t 8
-               bind-key -n M-( select-window -t 9
-               bind-key -n M-) select-window -t 0
+        bind-key -n M-! select-window -t 1
+        bind-key -n M-@ select-window -t 2
+        bind-key -n M-# select-window -t 3
+        bind-key -n M-$ select-window -t 4
+        bind-key -n M-% select-window -t 5
+        bind-key -n M-^ select-window -t 6
+        bind-key -n M-& select-window -t 7
+        bind-key -n M-* select-window -t 8
+        bind-key -n M-( select-window -t 9
+        bind-key -n M-) select-window -t 0
       '';
     };
   };

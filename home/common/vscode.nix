@@ -12,7 +12,7 @@
       extensions = with pkgs.vscode-extensions; [
         catppuccin.catppuccin-vsc
         catppuccin.catppuccin-vsc-icons
-	golang.go
+        golang.go
         mkhl.direnv
         vscodevim.vim
       ];
