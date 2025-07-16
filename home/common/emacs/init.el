@@ -2,6 +2,8 @@
 (setq inhibit-startup-message t
   visible-bell t)
 
+(set-frame-font "Inconsolata 16" nil t)
+
 ;; TODO: order in some way
 (menu-bar-mode -1)
 (tool-bar-mode -1)
@@ -13,7 +15,13 @@
 (setq history-length 25)
 (savehist-mode 1)
 
-;; 2. Plugins
+;; 2. Various Plugins
+(use-package corfu
+  :hook ((prog-mode . corfu-mode)))
+
+(use-package envrc
+  :hook (after-init . envrc-global-mode))
+
 (use-package evil
   :init
   (setq evil-want-integration t)
@@ -35,10 +43,16 @@
   :config
   (evil-collection-init))
 
-(use-package magit)
+(use-package exec-path-from-shell
+  :config
+  (exec-path-from-shell-initialize))
 
-(use-package evil-magit
-  :after magit)
+(use-package flymake
+  :bind (:map prog-mode-map
+              ("M-n" . flymake-goto-next-error)
+              ("M-p" . flymake-goto-prev-error)))
+
+(use-package magit)
 
 (use-package orderless
   :custom
@@ -67,3 +81,11 @@
   :diminish which-key-mode
   :config
   (setq which-key-idle-delay 0.3))
+
+;; 3. LSP + major modes
+(use-package eglot
+  :hook ((python-mode . eglot-ensure)))
+
+(use-package go-mode
+  :ensure t
+  :hook (go-mode . eglot-ensure))
