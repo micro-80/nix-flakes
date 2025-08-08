@@ -52,34 +52,35 @@
     };
     tmux = {
       enable = true;
+      shell = "${pkgs.zsh}/bin/zsh";
       terminal = "tmux-256color";
       baseIndex = 1;
+      escapeTime = 10;
       historyLimit = 100000;
       mouse = true;
       prefix = "C-a";
 
-      plugins = with pkgs; [
-        tmuxPlugins.better-mouse-mode
-        tmuxPlugins.catppuccin
-        tmuxPlugins.yank
-      ];
-
       extraConfig = ''
-               set -gu default-command
-               set -g default-shell "${pkgs.zsh}/bin/zsh"
-               set -g allow-rename on
+               set-environment -g PATH "${pkgs.tmux}/bin:$HOME/.nix-profile/bin:/etc/profiles/per-user/user/bin:/run/current-system/sw/bin"
 
                set -as terminal-overrides ',xterm-256color:Tc'
                set -as terminal-overrides ',tmux-256color:Tc'
                set -g @catppuccin_flavor 'macchiato'
+        set -g @catppuccin_window_text " #{pane_current_command}"
+               set -g @catppuccin_window_current_text " #{pane_current_command}"
+
+        run-shell "${pkgs.tmuxPlugins.better-mouse-mode}/share/tmux-plugins/better-mouse-mode/scroll_copy_mode.tmux"
+               run-shell "${pkgs.tmuxPlugins.yank}/share/tmux-plugins/yank/yank.tmux"
+        source-file "${pkgs.tmuxPlugins.catppuccin}/share/tmux-plugins/catppuccin/catppuccin_options_tmux.conf"
+               source-file "${pkgs.tmuxPlugins.catppuccin}/share/tmux-plugins/catppuccin/catppuccin_tmux.conf"
 
                set-option -g set-clipboard on
-        set-window-option -g mode-keys vi
-               # scroll up/down with j/k
-               bind-key -T copy-mode-vi j send-keys -X page-up
-               bind-key -T copy-mode-vi k send-keys -X page-down
-               # v for selection y for yanking
+               set-window-option -g mode-keys vi
                bind-key -T copy-mode-vi v send-keys -X begin-selection
+               bind-key -T copy-mode-vi h send-keys -X cursor-left
+               bind-key -T copy-mode-vi j send-keys -X cursor-down
+               bind-key -T copy-mode-vi k send-keys -X cursor-up
+               bind-key -T copy-mode-vi l send-keys -X cursor-right
                bind-key -T copy-mode-vi y send-keys -X copy-selection
 
                bind-key -n M-! select-window -t 1
