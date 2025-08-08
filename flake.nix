@@ -13,10 +13,6 @@
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixvim = {
-      url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = inputs @ {
@@ -24,7 +20,6 @@
     nixos-hardware,
     home-manager,
     nix-darwin,
-    nixvim,
     ...
   }: {
     formatter.aarch64-darwin = nixpkgs.legacyPackages.aarch64-darwin.alejandra;
@@ -47,9 +42,6 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.sharedModules = [
-              nixvim.homeManagerModules.nixvim
-            ];
             home-manager.users.user = import ./home/aiko/home.nix;
           }
         ];
@@ -68,9 +60,6 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.sharedModules = [
-              nixvim.homeManagerModules.nixvim
-            ];
             home-manager.users.user = import ./home/leon/home.nix;
           }
         ];
@@ -88,9 +77,6 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.sharedModules = [
-              nixvim.homeManagerModules.nixvim
-            ];
             home-manager.users.user = import ./home/frank/home.nix;
           }
         ];
@@ -105,9 +91,6 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.sharedModules = [
-              nixvim.homeManagerModules.nixvim
-            ];
             home-manager.users.mgn25 = import ./home/work/home.nix;
           }
         ];
