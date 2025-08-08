@@ -19,6 +19,7 @@
 
     casks = [
       "bitwig-studio"
+      "obs"
     ];
   };
 
@@ -26,7 +27,7 @@
   users.users.user = {
     name = "user";
     home = "/Users/user";
-    shell = pkgs.fish;
+    shell = pkgs.zsh;
   };
 
   environment.systemPackages = with pkgs; [

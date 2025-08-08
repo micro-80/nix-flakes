@@ -3,8 +3,8 @@
     clipboard = "unnamedplus";
     incsearch = true;
     number = true;
-    relativenumber = true;
     showcmd = true;
+    termguicolors = true;
 
     signcolumn = "number";
     cmdheight = 1;

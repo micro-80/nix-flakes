@@ -6,7 +6,6 @@
 }: {
   imports = [
     ../cli
-    ../emacs
     ../packages.nix
     ../vscode.nix
   ];
