@@ -4,24 +4,23 @@
   ...
 }: {
   home.file.".config/nvim".source = ./config;
-  home.packages = with pkgs; [ ripgrep ];
+  home.packages = with pkgs; [ripgrep];
 
   programs.neovim = {
     enable = true;
-    plugins = with pkgs.vimPlugins; [ 
-      bufferline-nvim
+    plugins = with pkgs.vimPlugins; [
       cmp-buffer
       cmp-nvim-lsp
       cmp-nvim-lsp-signature-help
       cmp-path
-      catppuccin-nvim 
+      catppuccin-nvim
       gitsigns-nvim
-      lualine-nvim
+      mini-nvim
       nvim-cmp
       oil-nvim
       telescope-nvim
       nvim-lspconfig
-      nvim-treesitter.withAllGrammars 
+      nvim-treesitter.withAllGrammars
     ];
     defaultEditor = true;
     viAlias = true;

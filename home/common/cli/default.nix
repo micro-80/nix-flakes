@@ -12,7 +12,7 @@
   home.packages = with pkgs; [
     gh
     jq
-    nerd-fonts.hack
+    nerd-fonts.inconsolata
   ];
 
   programs = {
@@ -21,11 +21,11 @@
       settings = {
         env = {TERM = "xterm-256color";};
         font = {
-          size = 12.0;
+          size = 14.0;
 
-          normal.family = "Hack Nerd Font Mono";
-          bold.family = "Hack Nerd Font Mono";
-          italic.family = "Hack Nerd Font Mono";
+          normal.family = "Inconsolata Nerd Font Mono";
+          bold.family = "Inconsolata Nerd Font Mono";
+          italic.family = "Inconsolata Nerd Font Mono";
         };
         general.import = [
           "${pkgs.alacritty-theme}/share/alacritty-theme/catppuccin_macchiato.toml"
