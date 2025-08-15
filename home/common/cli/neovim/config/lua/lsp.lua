@@ -1,5 +1,6 @@
 local servers = {
 	bashls = {},
+	clangd = {},
 	svelte = {},
 	ts_ls = {},
 	rust_analyzer = {},

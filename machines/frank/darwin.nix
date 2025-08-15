@@ -19,6 +19,7 @@
 
     casks = [
       "bitwig-studio"
+      "pocket-casts"
       "obs"
     ];
   };
@@ -73,6 +74,18 @@
     ctrl + shift - 8 : yabai -m window --space 8
     ctrl + shift - 9 : yabai -m window --space 9
     ctrl + shift - 0 : yabai -m window --space 10
+
+    # Change window with Ctrl + hjkl
+    ctrl + h: yabai -m window --focus west
+    ctrl + j: yabai -m window --focus south
+    ctrl + k: yabai -m window --focus north
+    ctrl + l: yabai -m window --focus east
+
+    # Swap window with Ctrl + hjkl
+    ctrl + h: yabai -m window --swap west
+    ctrl + j: yabai -m window --swap south
+    ctrl + k: yabai -m window --swap north
+    ctrl + l: yabai -m window --swap east
 
     # TIP:
     # Restart yabai and skhd after updating config:

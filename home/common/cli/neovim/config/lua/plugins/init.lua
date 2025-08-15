@@ -1,8 +1,0 @@
-require("plugins.catppuccin")
-require("plugins.cmp")
-require("plugins.gitsigns")
-require("plugins.lsp")
-require("plugins.mini")
-require("plugins.oil")
-require("plugins.telescope")
-require("plugins.treesit")

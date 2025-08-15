@@ -21,7 +21,7 @@
       settings = {
         env = {TERM = "xterm-256color";};
         font = {
-          size = 14.0;
+          size = 16.0;
 
           normal.family = "Inconsolata Nerd Font Mono";
           bold.family = "Inconsolata Nerd Font Mono";

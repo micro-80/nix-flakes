@@ -10,5 +10,5 @@
   home.username = "user";
   home.homeDirectory = "/Users/user";
 
-  home.packages = with pkgs; [whatsapp-for-mac];
+  home.packages = with pkgs; [man-pages whatsapp-for-mac];
 }

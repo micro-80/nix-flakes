@@ -9,6 +9,7 @@
   programs.neovim = {
     enable = true;
     plugins = with pkgs.vimPlugins; [
+      bullets-vim
       cmp-buffer
       cmp-nvim-lsp
       cmp-nvim-lsp-signature-help
@@ -17,6 +18,7 @@
       gitsigns-nvim
       mini-nvim
       nvim-cmp
+      render-markdown-nvim
       oil-nvim
       telescope-nvim
       nvim-lspconfig
