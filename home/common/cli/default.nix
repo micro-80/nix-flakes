@@ -10,6 +10,7 @@
   ];
 
   home.packages = with pkgs; [
+    git
     gh
     jq
     nerd-fonts.inconsolata
