@@ -27,11 +27,11 @@
 
     # TODO: clean up duplication
     nixosConfigurations = {
-      aiko = nixpkgs.lib.nixosSystem {
+      aiko-server = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = {inherit inputs;};
         modules = [
-          ./machines/aiko/configuration.nix
+          ./machines/aiko-server/configuration.nix
           nixos-hardware.nixosModules.framework-12th-gen-intel
 
           {
@@ -42,7 +42,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.user = import ./home/aiko/home.nix;
+            home-manager.users.user = import ./home/aiko-server/home.nix;
           }
         ];
       };
