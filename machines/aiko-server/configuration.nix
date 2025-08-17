@@ -44,7 +44,7 @@
   users.users.user = {
     isNormalUser = true;
     description = "user";
-    extraGroups = [ "docker" "networkmanager" "wheel"];
+    extraGroups = ["docker" "networkmanager" "wheel"];
     packages = with pkgs; [docker-compose];
     shell = pkgs.zsh;
   };
@@ -60,11 +60,18 @@
 
   virtualisation.docker.enable = true;
 
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  networking.firewall.enable = false;
+
+  # unsure if needed - GPU accel
+  hardware.graphics = {
+    enable = true;
+    extraPackages = with pkgs; [
+      intel-media-driver # LIBVA_DRIVER_NAME=iHD
+      intel-vaapi-driver # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
+      libvdpau-va-gl
+    ];
+  };
+  environment.sessionVariables = {LIBVA_DRIVER_NAME = "iHD";}; # Force intel-media-driver
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
