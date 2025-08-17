@@ -44,8 +44,8 @@
   users.users.user = {
     isNormalUser = true;
     description = "user";
-    extraGroups = ["networkmanager" "wheel"];
-    packages = with pkgs; [];
+    extraGroups = [ "docker" "networkmanager" "wheel"];
+    packages = with pkgs; [docker-compose];
     shell = pkgs.zsh;
   };
 
@@ -57,6 +57,8 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+
+  virtualisation.docker.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
