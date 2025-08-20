@@ -62,20 +62,23 @@
 
   networking.firewall.enable = false;
 
-  # unsure if needed - GPU accel
+  hardware.intel-gpu-tools.enable = true;
   hardware.graphics = {
     enable = true;
     extraPackages = with pkgs; [
-      intel-media-driver # LIBVA_DRIVER_NAME=iHD
-      intel-vaapi-driver # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
-      libvdpau-va-gl
+      vaapiIntel # Intel VA-API driver
+      vulkan-loader
+      libva-utils
     ];
   };
-  environment.sessionVariables = {LIBVA_DRIVER_NAME = "iHD";}; # Force intel-media-driver
 
   # ZFS
   boot.supportedFilesystems = ["zfs"];
-  boot.zfs.extraPools = ["pool"];
+  boot.zfs = {
+    extraPools = ["pool"];
+    forceImportAll = true;
+    devNodes = "/dev/disk/by-id";
+  };
   networking.hostId = "6285cbaa";
   services.zfs.autoScrub.enable = true;
 
