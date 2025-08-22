@@ -45,7 +45,7 @@
     isNormalUser = true;
     description = "user";
     extraGroups = ["docker" "networkmanager" "wheel"];
-    packages = with pkgs; [docker-compose];
+    packages = with pkgs; [picard];
     shell = pkgs.zsh;
   };
 
@@ -54,9 +54,11 @@
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
   # List services that you want to enable:
-
   # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+    settings.X11Forwarding = true;
+  };
 
   virtualisation.docker.enable = true;
 
