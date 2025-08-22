@@ -1,6 +1,8 @@
 local servers = {
+	basedpyright = {},
 	bashls = {},
 	clangd = {},
+	ruff = {},
 	svelte = {},
 	ts_ls = {},
 	rust_analyzer = {},

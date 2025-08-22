@@ -3,7 +3,6 @@ require("mini.comment").setup()
 require("mini.icons").setup()
 require("mini.indentscope").setup()
 require("mini.notify").setup()
-require("mini.pairs").setup()
 require("mini.statusline").setup()
 require("mini.tabline").setup()
 require("render-markdown").setup({})
@@ -16,8 +15,8 @@ vim.cmd.colorscheme("catppuccin")
 local cmp = require("cmp")
 cmp.setup({
 	mapping = {
-		["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
-		["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
+		["<A-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+		["<A-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
 		["<CR>"] = cmp.mapping.confirm({ select = true }),
 	},
 	sources = cmp.config.sources({
@@ -27,6 +26,8 @@ cmp.setup({
 		{ name = "buffer" },
 	}),
 })
+
+require("nvim-autopairs").setup({})
 
 require("nvim-treesitter.configs").setup({
 	ensure_installed = {},
@@ -50,8 +51,8 @@ require("telescope").setup({
 		mappings = {
 			i = {
 				["<esc>"] = actions.close,
-				["<C-j>"] = actions.move_selection_next,
-				["<C-k>"] = actions.move_selection_previous,
+				["<A-j>"] = actions.move_selection_next,
+				["<A-k>"] = actions.move_selection_previous,
 			},
 		},
 	},

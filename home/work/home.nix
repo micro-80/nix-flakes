@@ -17,6 +17,7 @@
     colima
     crane
     docker
+    git
     gauge
     kubectl
     kubectx

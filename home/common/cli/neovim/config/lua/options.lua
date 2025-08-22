@@ -11,6 +11,11 @@ local opts = {
 	foldlevel = 99,
 	foldlevelstart = 99,
 	foldenable = true,
+
+	tabstop = 4,
+	shiftwidth = 4,
+	expandtab = false,
+	smarttab = true,
 }
 
 -- Apply the options globally

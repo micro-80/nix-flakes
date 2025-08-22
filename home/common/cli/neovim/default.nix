@@ -17,12 +17,14 @@
       catppuccin-nvim
       gitsigns-nvim
       mini-nvim
+      nvim-autopairs
       nvim-cmp
+      nvim-lspconfig
+      nvim-treesitter.withAllGrammars
       render-markdown-nvim
       oil-nvim
       telescope-nvim
-      nvim-lspconfig
-      nvim-treesitter.withAllGrammars
+      vim-sleuth
     ];
     defaultEditor = true;
     viAlias = true;

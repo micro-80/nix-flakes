@@ -20,11 +20,9 @@
     brews = [
     ];
     casks = [
-      "keepassxc"
       "linearmouse"
-      "nikitabobko/tap/aerospace"
       "intellij-idea"
-      "postman"
+      "pocket-casts"
       "temurin@11"
     ];
     taps = [
