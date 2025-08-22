@@ -14,6 +14,7 @@
 
   home.activation.copyPicardRemote = lib.hm.dag.entryAfter ["writeBoundary"] ''
     mkdir -p "$HOME/Applications"
+    chmod -R u+w "$HOME/Applications/PicardRemote.app" || true
     rm -rf "$HOME/Applications/PicardRemote.app"
     cp -R "${./PicardRemote.app}" "$HOME/Applications/PicardRemote.app"
   '';

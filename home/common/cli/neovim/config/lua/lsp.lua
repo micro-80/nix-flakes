@@ -14,18 +14,19 @@ local on_attach = function(client, bufnr)
 	local opts = { noremap = true, silent = true, buffer = bufnr }
 
 	-- LSP buffer keymaps
+	-- LSP buffer keymaps
 	local buf_keymap = {
-		["gd"] = "definition",
-		["gD"] = "references",
-		["gt"] = "type_definition",
-		["gi"] = "implementation",
-		["K"] = "hover",
-		["<leader>A"] = "code_action",
+		["gd"] = vim.lsp.buf.definition,
+		["gD"] = vim.lsp.buf.references,
+		["gt"] = vim.lsp.buf.type_definition,
+		["gi"] = vim.lsp.buf.implementation,
+		["K"] = vim.lsp.buf.hover,
+		["<leader>a"] = vim.lsp.buf.code_action,
+		["<leader>rn"] = vim.lsp.buf.rename,
 	}
+
 	for key, func in pairs(buf_keymap) do
-		vim.keymap.set("n", key, function()
-			vim.lsp.buf[func]()
-		end, opts)
+		vim.keymap.set("n", key, func, opts)
 	end
 
 	-- Diagnostic keymaps
