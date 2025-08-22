@@ -8,6 +8,10 @@ vim.keymap.set("n", "<M-h>", ":bprevious<CR>", { silent = true, desc = "Previous
 vim.keymap.set("n", "<M-l>", ":bnext<CR>", { silent = true, desc = "Next buffer" })
 vim.keymap.set("n", "<M-w>", ":bd<CR>", { silent = true, desc = "Close buffer" })
 
+vim.keymap.set("n", "<M-k>", "<cmd>cprev<CR>zz", { silent = true, desc = "Previous quickfix entry" })
+vim.keymap.set("n", "<M-j>", "<cmd>cnext<CR>zz", { silent = true, desc = "Next quickfix entry" })
+vim.keymap.set("n", "<M-q>", "<cmd>cclose<CR>zz", { silent = true, desc = "Close quickfix entry" })
+
 vim.keymap.set("n", "<Tab>", "za", opts)
 vim.keymap.set("v", "<Tab>", "zf", opts)
 vim.keymap.set("n", "<S-Tab>", "zR", opts)
