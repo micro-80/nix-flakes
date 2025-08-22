@@ -25,6 +25,7 @@
       oil-nvim
       telescope-nvim
       vim-sleuth
+      zen-mode-nvim
     ];
     defaultEditor = true;
     viAlias = true;

@@ -8,6 +8,8 @@ local opts = {
 	signcolumn = "yes",
 	wildmenu = true,
 
+	foldmethod = "expr",
+	foldexpr = "v:lua.vim.treesitter.foldexpr()",
 	foldlevel = 99,
 	foldlevelstart = 99,
 	foldenable = true,
