@@ -70,6 +70,10 @@
         enter = "mode main";
         esc = "mode main";
       };
+      workspace-to-monitor-force-assignment = {
+        "9" = "^DELL U2422H \\(1\\)$";
+        "10" = ["^DELL U2422H \\(2\\)$" "^DELL U2422H$"];
+      };
     };
   };
 

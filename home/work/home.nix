@@ -27,21 +27,23 @@
   ];
 
   programs.ssh = {
+    includes = [
+      "/Users/mgn25/.colima/ssh_config"
+    ];
+
     matchBlocks = {
-      "github-work" = {
-        hostname = "github.com";
+      "github.com" = {
         identityFile = "~/.ssh/id_ed25519";
+        identitiesOnly = true;
         user = "mylesgordon";
       };
       "github-personal" = {
         hostname = "github.com";
         identityFile = "~/.ssh/id_ed25519_prophetarmed";
+        identitiesOnly = true;
         user = "prophetarmed";
       };
     };
-    includes = [
-      "/Users/mgn25/.colima/ssh_config"
-    ];
   };
 
   programs.vscode.profiles.default = {
@@ -55,8 +57,8 @@
     ];
 
     userSettings = {
-      sqldeveloper.sqlHistory.historyLimit = 1000;
-      sqldeveloper.connections.tnsConfiguration.path = "/Users/mgn25/Code";
+      "sqldeveloper.sqlHistory.historyLimit" = 1000;
+      "sqldeveloper.connections.tnsConfiguration.path" = "/Users/mgn25/Code";
     };
   };
 

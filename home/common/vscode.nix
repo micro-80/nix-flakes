@@ -20,8 +20,8 @@
       enableUpdateCheck = false;
 
       userSettings = {
-        workbench.colorTheme = "Catppuccin Macchiato";
-        workbench.iconTheme = "catppuccin-macchiato";
+        "workbench.colorTheme" = "Catppuccin Macchiato";
+        "workbench.iconTheme" = "catppuccin-macchiato";
       };
     };
   };
