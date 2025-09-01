@@ -6,7 +6,6 @@
 }: {
   imports = [
     ../common/mac
-    ../common/emacs
   ];
   home.username = "user";
   home.homeDirectory = "/Users/user";

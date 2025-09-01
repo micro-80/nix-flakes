@@ -15,25 +15,27 @@
     enable = true;
     package = pkgs.emacsNativeComp;
 
-    extraPackages = epkgs: with epkgs; [
-      doom-themes
-      olivetti
+    extraPackages = epkgs:
+      with epkgs; [
+        doom-themes
+        olivetti
 
-      nix-mode
-      nix-ts-mode
-      svelte-mode
-      treesit-grammars.with-all-grammars
-      treesit-auto
+        nix-mode
+        nix-ts-mode
+        svelte-mode
+        treesit-grammars.with-all-grammars
+        treesit-auto
 
-      cape
-      consult
-      corfu
-      envrc
-      exec-path-from-shell
-      marginalia
-      orderless
-      vertico
-      which-key
-    ];
+        cape
+        consult
+        corfu
+        envrc
+        exec-path-from-shell
+        marginalia
+        orderless
+        org-journal
+        vertico
+        which-key
+      ];
   };
 }

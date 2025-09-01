@@ -201,6 +201,25 @@
   (completion-styles '(orderless basic))
   (completion-category-overrides '((file (styles basic partial-completion)))))
 
+(use-package org-journal
+  :ensure t
+  :config
+  (setq org-journal-dir "~/Notes/Journal/"
+	org-journal-file-format "%Y-%m-%d.org"
+        org-journal-file-type 'weekly)
+  (define-prefix-command 'my/org-journal-prefix)
+  (global-set-key (kbd "C-c j") 'my/org-journal-prefix)
+  (define-key my/org-journal-prefix (kbd "j") #'org-journal-new-entry)
+  (define-key my/org-journal-prefix (kbd "d") #'org-journal-new-date-entry)
+  (define-key my/org-journal-prefix (kbd "s") #'org-journal-search-forever)
+  ;; Which-key integration
+  (with-eval-after-load 'which-key
+    (which-key-add-key-based-replacements
+      "C-c j"   "Org Journal"
+      "C-c j j" "New Daily Entry"
+      "C-c j d" "New Date Entry"
+      "C-c j s" "Search Journal")))
+
 ;; vertico sorts by history position.
 (use-package savehist
   :init
