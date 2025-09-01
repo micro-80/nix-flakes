@@ -31,6 +31,7 @@
         corfu
         envrc
         exec-path-from-shell
+        magit
         marginalia
         orderless
         org-journal
