@@ -5,6 +5,8 @@
   ...
 }: {
   home.packages = with pkgs; [
+    hunspell
+    hunspellDicts.en_GB-ise
     nerd-fonts.jetbrains-mono
   ];
 
@@ -14,6 +16,10 @@
   programs.emacs = {
     enable = true;
     package = pkgs.emacsNativeComp;
+
+    extraConfig = ''
+      (setenv "DICPATH" (expand-file-name "${pkgs.hunspellDicts.en_GB-ise}/share/hunspell"))
+    '';
 
     extraPackages = epkgs:
       with epkgs; [

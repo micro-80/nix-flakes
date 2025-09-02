@@ -10,7 +10,7 @@
     ../vscode.nix
   ];
 
-  home.packages = with pkgs; [];
+  home.packages = with pkgs; [firefox];
 
   home.activation.symlinkNixApps = lib.hm.dag.entryAfter ["writeBoundary"] (
     builtins.readFile ./symlinkNixApps.sh
