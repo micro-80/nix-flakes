@@ -12,6 +12,7 @@
 
   home.file.".emacs.d/early-init.el".source = ./early-init.el;
   home.file.".emacs.d/init.el".source = ./init.el;
+  home.file.".emacs.d/snippets".source = ./snippets;
 
   programs.emacs = {
     enable = true;
@@ -46,6 +47,8 @@
         vertico
 	vterm
         which-key
+	yasnippet
+	yasnippet-capf
       ];
   };
 }

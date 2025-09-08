@@ -12,12 +12,20 @@
 (setq mac-option-modifier 'meta)
 (setq mac-right-option-modifier 'none)
 
-(setq backup-directory-alist `(("." . "~/.emacs.d/backups")))
-(setq auto-save-file-name-transforms `((".*" "~/.emacs.d/auto-saves/" t)))
+(dolist (dir '("~/.emacs.d/backups" "~/.emacs.d/auto-saves"))
+  (unless (file-directory-p dir)
+    (make-directory dir t)))
+
+(setq backup-directory-alist `(("." . "~/.emacs.d/backups"))
+      auto-save-file-name-transforms `((".*" "~/.emacs.d/auto-saves/" t)))
 
 (setq browse-url-browser-function 'eww-browse-url)
 (setq browse-url-firefox-program "/usr/bin/open")
 (setq browse-url-firefox-arguments '("-a" "Firefox"))
+
+(setq org-adapt-indentation t
+      org-checkbox-hierarchical-statistics t
+      org-enforce-todo-dependencies t)
 
 (defun open-latest-journal-file ()
   "Open the most recently modified journal file in `org-journal-dir`."
@@ -56,6 +64,7 @@
   :init
   (add-hook 'completion-at-point-functions #'cape-dabbrev)
   (add-hook 'completion-at-point-functions #'cape-file)
+  (add-hook 'completion-at-point-functions #'yasnippet-capf)
   )
 
 (use-package consult
@@ -199,7 +208,8 @@
       (lambda ()
         (let ((today (format-time-string "%Y-%m-%d")))
           (concat "#+TITLE: Weekly Journal (" today ")\n"
-                  "* TODO Weekly\n\n"))))
+		  "#+STARTUP: overview\n"
+                  "* TODO Weekly [0/0]\n\n"))))
   (define-prefix-command 'my/org-journal-prefix)
   (global-set-key (kbd "C-c j") 'my/org-journal-prefix)
   (define-key my/org-journal-prefix (kbd "j") #'open-latest-journal-file)
@@ -232,6 +242,10 @@
   (setq minibuffer-prompt-properties
    '(read-only t cursor-intangible t face minibuffer-prompt))
   (vertico-mode))
+
+(use-package yasnippet
+  :init
+  (yas-global-mode 1))
 
 ;; lsp + treesit
 (use-package svelte-mode
