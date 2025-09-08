@@ -10,7 +10,7 @@
   home.username = "user";
   home.homeDirectory = "/Users/user";
 
-  home.packages = with pkgs; [man-pages whatsapp-for-mac xquartz];
+  home.packages = with pkgs; [man-pages xquartz];
 
   home.activation.copyPicardRemote = lib.hm.dag.entryAfter ["writeBoundary"] ''
     mkdir -p "$HOME/Applications"
@@ -26,6 +26,10 @@
         hostname = "192.168.0.100";
         user = "user";
         forwardX11 = true;
+      };
+      tunnel = {
+        hostname = "178.128.167.42";
+        user = "user";
       };
     };
   };

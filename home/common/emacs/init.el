@@ -7,9 +7,36 @@
     :height 140)
 
 (global-display-line-numbers-mode)
+(global-hl-line-mode)
 
 (setq mac-option-modifier 'meta)
 (setq mac-right-option-modifier 'none)
+
+(setq backup-directory-alist `(("." . "~/.emacs.d/backups")))
+(setq auto-save-file-name-transforms `((".*" "~/.emacs.d/auto-saves/" t)))
+
+(setq browse-url-browser-function 'eww-browse-url)
+(setq browse-url-firefox-program "/usr/bin/open")
+(setq browse-url-firefox-arguments '("-a" "Firefox"))
+
+(defun open-latest-journal-file ()
+  "Open the most recently modified journal file in `org-journal-dir`."
+  (interactive)
+  (let* ((files (directory-files org-journal-dir t "\\.org$"))
+         (latest (car (sort files
+                             (lambda (a b)
+                               (time-less-p (nth 5 (file-attributes b))
+                                            (nth 5 (file-attributes a))))))))
+    (if latest
+        (find-file latest)
+      (message "No journal files found."))))
+
+(defun open-link-in-firefox ()
+  "Open link below cursor in Firefox."
+  (interactive)
+  (let ((url (or (thing-at-point 'url t)
+                 (read-string "URL: "))))
+    (browse-url-firefox url)))
 
 ;; -- PLUGINS --
 
@@ -111,7 +138,9 @@
   (keymap-unset corfu-map "RET"))
 
 (use-package eglot
-  :ensure nil
+  :custom
+  (eglot-autoshutdown t)
+  (eglot-code-action-indicator "!")
   :hook (prog-mode . eglot-ensure))
 
 (use-package envrc
@@ -122,7 +151,6 @@
   (exec-path-from-shell-initialize))
 
 (use-package flymake
-  :ensure nil
   :hook ((prog-mode) . flymake-mode)
   :bind (:map flymake-mode-map
               ("M-n" . flymake-goto-next-error)
@@ -130,7 +158,6 @@
               ("C-c ! l" . flymake-show-buffer-diagnostics)))
 
 (use-package flyspell
-  :ensure nil
   :init
   (setq ispell-dictionary "en_GB")
   (setq ispell-program-name "hunspell")
@@ -139,34 +166,50 @@
          (org-mode  . flyspell-mode)
          (prog-mode . flyspell-prog-mode)))
 
+(use-package git-auto-commit-mode
+  :custom
+  (gac-automatically-push-p t)
+  (gac-automatically-add-new-files-p t)
+  (gac-silent-message-p t))
+
 (use-package marginalia
   :bind (:map minibuffer-local-map
          ("M-A" . marginalia-cycle))
   :init
   (marginalia-mode))
 
+(use-package multiple-cursors
+  :bind
+  ("C-S-c C-S-c" .  mc/edit-lines)
+  ("C->" .  mc/mark-next-like-this)
+  ("C-<" .  mc/mark-previous-like-this)
+  ("C-c C-<" .  mc/mark-all-like-this))
+
 (use-package orderless
-  :ensure t
   :custom
   (completion-styles '(orderless basic))
   (completion-category-overrides '((file (styles basic partial-completion)))))
 
 (use-package org-journal
-  :ensure t
   :config
   (setq org-journal-dir "~/Notes/Journal/"
 	org-journal-file-format "%Y-%m-%d.org"
         org-journal-file-type 'weekly)
+  (setq org-journal-file-header
+      (lambda ()
+        (let ((today (format-time-string "%Y-%m-%d")))
+          (concat "#+TITLE: Weekly Journal (" today ")\n"
+                  "* TODO Weekly\n\n"))))
   (define-prefix-command 'my/org-journal-prefix)
   (global-set-key (kbd "C-c j") 'my/org-journal-prefix)
-  (define-key my/org-journal-prefix (kbd "j") #'org-journal-new-entry)
-  (define-key my/org-journal-prefix (kbd "d") #'org-journal-new-date-entry)
+  (define-key my/org-journal-prefix (kbd "j") #'open-latest-journal-file)
+  (define-key my/org-journal-prefix (kbd "d") #'org-journal-new-entry)
   (define-key my/org-journal-prefix (kbd "s") #'org-journal-search-forever)
   (with-eval-after-load 'which-key
     (which-key-add-key-based-replacements
       "C-c j"   "Org Journal"
-      "C-c j j" "New Daily Entry"
-      "C-c j d" "New Date Entry"
+      "C-c j d" "New Daily Entry"
+      "C-c j j" "Go To Latest Journal Entry"
       "C-c j s" "Search Journal")))
 
 (use-package savehist
