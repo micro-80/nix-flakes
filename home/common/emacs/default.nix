@@ -38,17 +38,17 @@
         corfu
         envrc
         exec-path-from-shell
-	git-auto-commit-mode
+        git-auto-commit-mode
         magit
         marginalia
-	multiple-cursors
+        multiple-cursors
         orderless
         org-journal
         vertico
-	vterm
+        vterm
         which-key
-	yasnippet
-	yasnippet-capf
+        yasnippet
+        yasnippet-capf
       ];
   };
 }
