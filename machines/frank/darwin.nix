@@ -21,6 +21,8 @@
       "bitwig-studio"
       "pocket-casts"
       "obs"
+      #nixpkgs broken for below - homebrew as temporarily solution
+      "spotify"
     ];
   };
 
