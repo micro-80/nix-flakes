@@ -27,17 +27,12 @@
       org-checkbox-hierarchical-statistics t
       org-enforce-todo-dependencies t)
 
-(defun open-latest-journal-file ()
-  "Open the most recently modified journal file in `org-journal-dir`."
+(defun open-current-week-journal ()
+  "Open this week's journal file in ~/Notes/Journal."
   (interactive)
-  (let* ((files (directory-files org-journal-dir t "\\.org$"))
-         (latest (car (sort files
-                             (lambda (a b)
-                               (time-less-p (nth 5 (file-attributes b))
-                                            (nth 5 (file-attributes a))))))))
-    (if latest
-        (find-file latest)
-      (message "No journal files found."))))
+  (find-file (expand-file-name (format-time-string "%G-W%V.org")
+                               "~/Notes/Journal/")))
+(global-set-key (kbd "C-c j") #'open-current-week-journal)
 
 (defun open-link-in-firefox ()
   "Open link below cursor in Firefox."
@@ -198,29 +193,6 @@
   :custom
   (completion-styles '(orderless basic))
   (completion-category-overrides '((file (styles basic partial-completion)))))
-
-(use-package org-journal
-  :config
-  (setq org-journal-dir "~/Notes/Journal/"
-	org-journal-file-format "%Y-%m-%d.org"
-        org-journal-file-type 'weekly)
-  (setq org-journal-file-header
-      (lambda ()
-        (let ((today (format-time-string "%Y-%m-%d")))
-          (concat "#+TITLE: Weekly Journal (" today ")\n"
-		  "#+STARTUP: overview\n"
-                  "* TODO Weekly [0/0]\n\n"))))
-  (define-prefix-command 'my/org-journal-prefix)
-  (global-set-key (kbd "C-c j") 'my/org-journal-prefix)
-  (define-key my/org-journal-prefix (kbd "j") #'open-latest-journal-file)
-  (define-key my/org-journal-prefix (kbd "d") #'org-journal-new-entry)
-  (define-key my/org-journal-prefix (kbd "s") #'org-journal-search-forever)
-  (with-eval-after-load 'which-key
-    (which-key-add-key-based-replacements
-      "C-c j"   "Org Journal"
-      "C-c j d" "New Daily Entry"
-      "C-c j j" "Go To Latest Journal Entry"
-      "C-c j s" "Search Journal")))
 
 (use-package savehist
   :init

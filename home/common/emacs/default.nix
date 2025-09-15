@@ -43,7 +43,6 @@
         marginalia
         multiple-cursors
         orderless
-        org-journal
         vertico
         vterm
         which-key
