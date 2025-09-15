@@ -34,16 +34,13 @@
         treesit-auto
 
         cape
-        consult
         corfu
         envrc
         exec-path-from-shell
         git-auto-commit-mode
         magit
-        marginalia
         multiple-cursors
-        orderless
-        vertico
+	orderless
         vterm
         which-key
         yasnippet
