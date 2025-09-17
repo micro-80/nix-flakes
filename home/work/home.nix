@@ -35,7 +35,7 @@
 
     matchBlocks = {
       "gitea" = {
-	hostname = "gitea.services.micro80.com";
+        hostname = "gitea.services.micro80.com";
         identityFile = "~/.ssh/id_ed25519_prophetarmed";
         identitiesOnly = true;
         user = "micro80";
@@ -49,7 +49,7 @@
         hostname = "github.com";
         identityFile = "~/.ssh/id_ed25519_prophetarmed";
         identitiesOnly = true;
-        user = "prophetarmed";
+        user = "micro-80";
       };
     };
   };

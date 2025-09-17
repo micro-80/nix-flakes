@@ -1,5 +1,5 @@
 {
-  description = "prophetarmed NixOS flakes";
+  description = "micro80 NixOS flakes";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";

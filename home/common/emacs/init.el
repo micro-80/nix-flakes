@@ -5,8 +5,8 @@
 (load-theme 'modus-vivendi-tinted t)
 
 (set-face-attribute 'default nil
-    :font "JetBrainsMono NFM"
-    :height 140)
+		    :font "JetBrainsMono NFM"
+		    :height 140)
 
 (global-display-line-numbers-mode)
 (global-hl-line-mode)

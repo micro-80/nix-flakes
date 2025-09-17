@@ -10,8 +10,8 @@
   programs = {
     git = {
       enable = true;
-      userName = "prophetarmed";
-      userEmail = "me@prophetarmed.com";
+      userName = "micro-80";
+      userEmail = "me@micro80.com";
     };
   };
 }
