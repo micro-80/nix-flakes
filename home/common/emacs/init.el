@@ -59,6 +59,7 @@
   :custom
   (corfu-auto t)
   (corfu-preselect 'directory)
+  (corfu-popupinfo-mode)
   :init
   (global-corfu-mode)
   :config
