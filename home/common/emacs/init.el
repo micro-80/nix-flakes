@@ -2,14 +2,11 @@
 (setq inhibit-splash-screen t)
 (setq use-file-dialog nil)
 
+(load-theme 'modus-vivendi-tinted t)
+
 (set-face-attribute 'default nil
     :font "JetBrainsMono NFM"
     :height 140)
-
-(fido-mode 1)
-(fido-vertical-mode 1)
-(setq completion-auto-select t
-      fido-auto-prefix nil)
 
 (global-display-line-numbers-mode)
 (global-hl-line-mode)
@@ -51,17 +48,6 @@
 
 ;; -- PLUGINS --
 
-;; appearance
-(use-package doom-themes
-  :custom
-  (doom-themes-enable-bold t)
-  (doom-themes-enable-italic t)
-  :config
-  (load-theme 'doom-monokai-pro t)
-  (doom-themes-visual-bell-config)
-  (doom-themes-org-config))
-
-;; functional
 (use-package cape
   :bind ("C-c p" . cape-prefix-map)
   :init
@@ -98,14 +84,17 @@
   (setq ispell-program-name "hunspell")
   (setq ispell-silently-savep t)
   :hook ((text-mode . flyspell-mode)
-         (org-mode  . flyspell-mode)
-         (prog-mode . flyspell-prog-mode)))
+         (org-mode  . flyspell-mode)))
 
 (use-package git-auto-commit-mode
   :custom
   (gac-automatically-push-p t)
   (gac-automatically-add-new-files-p t)
   (gac-silent-message-p t))
+
+(use-package marginalia
+  :init
+  (marginalia-mode))
 
 (use-package multiple-cursors
   :bind
@@ -114,10 +103,22 @@
   ("C-<" .  mc/mark-previous-like-this)
   ("C-c C-<" .  mc/mark-all-like-this))
 
+(use-package nov
+  :init
+  (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode)))
+
 (use-package orderless
   :custom
   (completion-styles '(orderless basic))
   (completion-category-overrides '((file (styles partial-completion)))))
+
+(use-package pdf-tools
+  :config
+  (pdf-tools-install)
+  (add-hook 'pdf-view-mode-hook (lambda () (display-line-numbers-mode -1)))
+  (setq pdf-view-display-size 'fit-page
+	pdf-view-resize-factor 1.1
+	pdf-annot-activate-created-annotations t))
 
 (use-package which-key
   :init (which-key-mode)
@@ -128,6 +129,20 @@
 (use-package yasnippet
   :init
   (yas-global-mode 1))
+
+(use-package vertico
+  :custom
+  ;; (vertico-scroll-margin 0) ;; Different scroll margin
+  ;; (vertico-count 20) ;; Show more candidates
+  ;; (vertico-resize t) ;; Grow and shrink the Vertico minibuffer
+  (vertico-cycle t) ;; Enable cycling for `vertico-next/previous'
+  :init
+  (setq context-menu-mode t
+	enable-recursive-minibuffers t
+	read-extended-command-predicate #'command-completion-default-include-p
+	minibuffer-prompt-properties
+	'(read-only t cursor-intangible t face minibuffer-prompt))
+  (vertico-mode))
 
 ;; lsp + treesit + modes
 (use-package eglot

@@ -34,17 +34,22 @@
         treesit-auto
 
         cape
+	consult
         corfu
         envrc
         exec-path-from-shell
         git-auto-commit-mode
         magit
+	marginalia
         multiple-cursors
+	nov
+	pdf-tools
 	orderless
         vterm
         which-key
         yasnippet
         yasnippet-capf
+	vertico
       ];
   };
 }
