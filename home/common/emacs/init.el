@@ -64,7 +64,10 @@
                  (read-string "URL: "))))
     (browse-url-firefox url)))
 
-(global-set-key (kbd "C-x m") 'magit)
+(define-prefix-command 'magit-prefix)
+(keymap-global-set "C-x m" 'magit-prefix)
+(define-key magit-prefix (kbd "m") #'magit)
+(define-key magit-prefix (kbd "p") #'magit-pull)
 
 ;; -- PLUGINS --
 
