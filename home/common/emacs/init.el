@@ -1,4 +1,5 @@
 ;; -- OPTIONS --
+;; This section is a fucking mess - I will clean it once I am happy with it!
 (setq inhibit-splash-screen t)
 (setq use-file-dialog nil)
 
@@ -30,21 +31,40 @@
       org-checkbox-hierarchical-statistics t
       org-enforce-todo-dependencies t)
 
-(defun open-current-week-journal ()
-  "Open this week's journal file in ~/Notes/Journal."
-  (interactive)
-  (find-file (expand-file-name (format-time-string "%G-W%V.org")
-                               "~/Notes/Journal/")))
-(define-prefix-command 'org-journal-prefix)
-(keymap-global-set "C-c j" 'org-journal-prefix)
-(define-key org-journal-prefix (kbd "j") #'open-current-week-journal)
+(defun my/compile-with-local-env (command)
+  "Run `compile` using the buffer-local environment (from envrc) and /bin/sh."
+  (interactive
+   (list (compilation-read-command compile-command)))
+  (let ((process-environment process-environment)
+        (shell-file-name "/bin/sh")
+        (explicit-shell-file-name "/bin/sh")
+        (compilation-environment process-environment))
+    (compile command)))
 
-(defun open-link-in-firefox ()
+(defvar-local my/notes-folder "~/Notes")
+(defvar-local my/journal-folder "~/Notes/Journal/")
+(defun my/open-current-week-journal ()
+  "Open this week's journal file."
+  (interactive)
+  (find-file (expand-file-name (format-time-string "%G-W%V.org") my/journal-folder)))
+(defun my/search-notes ()
+  "Search notes with ripgrep."
+  (interactive)
+  (consult-ripgrep my/notes-folder))
+
+(define-prefix-command 'notes-prefix)
+(keymap-global-set "C-c n" 'notes-prefix)
+(define-key notes-prefix (kbd "j") #'my/open-current-week-journal)
+(define-key notes-prefix (kbd "s") #'my/search-notes)
+
+(defun my/open-link-in-firefox ()
   "Open link below cursor in Firefox."
   (interactive)
   (let ((url (or (thing-at-point 'url t)
                  (read-string "URL: "))))
     (browse-url-firefox url)))
+
+(global-set-key (kbd "C-x m") 'magit)
 
 ;; -- PLUGINS --
 
@@ -65,6 +85,12 @@
   :config
   (keymap-unset corfu-map "RET"))
 
+(use-package consult
+  :bind
+  (
+   ("C-c f d" . consult-flymake)
+   ))
+
 (use-package envrc
   :hook (after-init . envrc-global-mode))
 
@@ -76,8 +102,7 @@
   :hook ((prog-mode) . flymake-mode)
   :bind (:map flymake-mode-map
               ("M-n" . flymake-goto-next-error)
-              ("M-p" . flymake-goto-prev-error)
-              ("C-c ! l" . flymake-show-buffer-diagnostics)))
+              ("M-p" . flymake-goto-prev-error)))
 
 (use-package flyspell
   :init
