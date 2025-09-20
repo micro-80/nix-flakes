@@ -23,6 +23,9 @@
 (setq backup-directory-alist `(("." . "~/.emacs.d/backups"))
       auto-save-file-name-transforms `((".*" "~/.emacs.d/auto-saves/" t)))
 
+(add-to-list 'safe-local-variable-values
+             '(magit-pull . nil))
+
 (setq browse-url-browser-function 'eww-browse-url)
 (setq browse-url-firefox-program "/usr/bin/open")
 (setq browse-url-firefox-arguments '("-a" "Firefox"))
@@ -40,6 +43,16 @@
         (explicit-shell-file-name "/bin/sh")
         (compilation-environment process-environment))
     (compile command)))
+
+(defun my/recompile-with-local-env (command)
+  "Run `recompile` using the buffer-local environment (from envrc) and /bin/sh."
+  (interactive
+   (list (compilation-read-command compile-command)))
+  (let ((process-environment process-environment)
+        (shell-file-name "/bin/sh")
+        (explicit-shell-file-name "/bin/sh")
+        (compilation-environment process-environment))
+    (recompile command)))
 
 (defvar-local my/notes-folder "~/Notes")
 (defvar-local my/journal-folder "~/Notes/Journal/")
@@ -158,6 +171,11 @@
 (use-package yasnippet
   :init
   (yas-global-mode 1))
+
+(use-package verb
+  :after org
+  :config
+  (define-key org-mode-map (kbd "C-c C-v") verb-command-map))
 
 (use-package vertico
   :custom

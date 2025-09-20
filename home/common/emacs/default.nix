@@ -49,6 +49,7 @@
         which-key
         yasnippet
         yasnippet-capf
+        verb
         vertico
       ];
   };
