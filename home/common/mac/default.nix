@@ -22,6 +22,8 @@
       start-at-login = true;
 
       mode.main.binding = {
+        alt-f = "fullscreen";
+
         cmd-h = "focus left";
         cmd-j = "focus down";
         cmd-k = "focus up";
@@ -61,7 +63,7 @@
 
         cmd-shift-c = "reload-config";
 
-        cmd-r = "mode resize";
+        cmd-alt-r = "mode resize";
       };
       mode.resize.binding = {
         h = "resize width -50";
@@ -70,10 +72,6 @@
         l = "resize width +50";
         enter = "mode main";
         esc = "mode main";
-      };
-      workspace-to-monitor-force-assignment = {
-        "9" = ".*\\(1\\)$";
-        "10" = ".*\\(2\\)$";
       };
     };
   };

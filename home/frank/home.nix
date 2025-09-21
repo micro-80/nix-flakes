@@ -19,6 +19,12 @@
     cp -R "${./PicardRemote.app}" "$HOME/Applications/PicardRemote.app"
   '';
 
+  programs.aerospace = {
+    userSettings.workspace-to-monitor-force-assignment = {
+      "10" = "Built-in Retina Display";
+    };
+  };
+
   programs.ssh = {
     enable = true;
     matchBlocks = {

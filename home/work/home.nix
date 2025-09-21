@@ -28,6 +28,13 @@
     scala_2_13
   ];
 
+  programs.aerospace = {
+    userSettings.workspace-to-monitor-force-assignment = {
+      "9" = ".*\\(1\\)$";
+      "10" = ".*\\(2\\)$";
+    };
+  };
+
   programs.ssh = {
     includes = [
       "/Users/mgn25/.colima/ssh_config"
