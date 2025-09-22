@@ -22,8 +22,6 @@
       start-at-login = true;
 
       mode.main.binding = {
-        alt-f = "fullscreen";
-
         cmd-h = "focus left";
         cmd-j = "focus down";
         cmd-k = "focus up";

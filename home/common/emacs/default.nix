@@ -13,6 +13,7 @@
   home.file.".emacs.d/early-init.el".source = ./early-init.el;
   home.file.".emacs.d/init.el".source = ./init.el;
   home.file.".emacs.d/snippets".source = ./snippets;
+  home.file.".emacs.d/study-lock.applescript".source = ./study-lock.applescript;
 
   programs.emacs = {
     enable = true;

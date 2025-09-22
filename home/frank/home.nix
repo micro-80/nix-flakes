@@ -10,7 +10,7 @@
   home.username = "user";
   home.homeDirectory = "/Users/user";
 
-  home.packages = with pkgs; [man-pages xquartz];
+  home.packages = with pkgs; [anki-bin man-pages xquartz];
 
   home.activation.copyPicardRemote = lib.hm.dag.entryAfter ["writeBoundary"] ''
     mkdir -p "$HOME/Applications"
