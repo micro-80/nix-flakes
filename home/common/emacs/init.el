@@ -26,6 +26,9 @@
 (add-to-list 'safe-local-variable-values
              '(magit-pull . nil))
 
+(setq ediff-window-setup-function 'ediff-setup-windows-plain
+      ediff-split-window-function 'split-window-horizontally)
+
 (setq browse-url-browser-function 'eww-browse-url)
 (setq browse-url-firefox-program "/usr/bin/open")
 (setq browse-url-firefox-arguments '("-a" "Firefox"))
