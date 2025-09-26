@@ -32,7 +32,6 @@
         nix-ts-mode
         svelte-mode
         treesit-grammars.with-all-grammars
-        treesit-auto
 
         cape
         consult

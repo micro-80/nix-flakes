@@ -204,7 +204,16 @@
 (use-package svelte-mode
   :mode "\\.svelte\\'")
 
-(use-package treesit-auto
-  :config
-  (treesit-auto-add-to-auto-mode-alist 'all)
-  (global-treesit-auto-mode 1))
+(setq major-mode-remap-alist
+      '((python-mode . python-ts-mode)
+        (c-mode      . c-ts-mode)
+        (c++-mode    . c++-ts-mode)
+        (js-mode     . js-ts-mode)
+        (typescript-mode . typescript-ts-mode)
+        ))
+
+;; (use-package treesit-auto
+;;   :config
+;;   (setq treesit-auto-install 'prompt)
+;;   (treesit-auto-add-to-auto-mode-alist 'all)
+;;   (global-treesit-auto-mode 1))
