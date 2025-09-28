@@ -11,7 +11,7 @@
 
   home-manager = {
     config = ../../home/nova/home.nix;
-    useGlobalPkgs = true;
+#    useGlobalPkgs = true;
   };
 
   terminal.font = "${pkgs.nerd-fonts.jetbrains-mono}/share/fonts/truetype/JetBrainsMonoNerdFontMono-Regular.ttf";

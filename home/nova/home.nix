@@ -9,5 +9,5 @@
   ];
   home.username = "nix-on-droid";
   home.homeDirectory = "/data/data/com.termux.nix/files/home";
-  home.stateVersion = "25.11";
+  home.stateVersion = "24.05";
 }
