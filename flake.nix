@@ -13,6 +13,10 @@
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-on-droid = {
+      url = "github:nix-community/nix-on-droid";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs @ {
@@ -20,6 +24,7 @@
     nixos-hardware,
     home-manager,
     nix-darwin,
+    nix-on-droid,
     ...
   }: {
     formatter.aarch64-darwin = nixpkgs.legacyPackages.aarch64-darwin.alejandra;
@@ -43,24 +48,6 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.user = import ./home/aiko-server/home.nix;
-          }
-        ];
-      };
-      leon = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = {inherit inputs;};
-        modules = [
-          ./machines/leon/configuration.nix
-
-          {
-            nix.nixPath = ["nixpkgs=${nixpkgs}"];
-          }
-
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.user = import ./home/leon/home.nix;
           }
         ];
       };
@@ -94,6 +81,13 @@
             home-manager.users.mgn25 = import ./home/work/home.nix;
           }
         ];
+      };
+    };
+
+    nixOnDroidConfigurations = {
+      nova = nix-on-droid.lib.nixOnDroidConfiguration {
+        pkgs = import nixpkgs {system = "aarch64-linux";};
+        modules = [./machines/nova/nix-on-droid.nix];
       };
     };
   };
