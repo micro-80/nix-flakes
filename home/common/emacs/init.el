@@ -2,7 +2,7 @@
 ;; This section is a fucking mess - I will clean it once I am happy with it!
 (setq inhibit-splash-screen t)
 (setq use-file-dialog nil)
-
+(menu-bar-mode -1)
 (load-theme 'modus-vivendi-tinted t)
 
 (set-face-attribute 'default nil
@@ -13,8 +13,9 @@
 (global-hl-line-mode)
 (savehist-mode)
 
-(setq mac-option-modifier 'meta)
+(setq mac-option-modifier 'meta)      
 (setq mac-right-option-modifier 'none)
+(setq mac-command-modifier 'super)    
 
 (dolist (dir '("~/.emacs.d/backups" "~/.emacs.d/auto-saves"))
   (unless (file-directory-p dir)
@@ -23,8 +24,8 @@
 (setq backup-directory-alist `(("." . "~/.emacs.d/backups"))
       auto-save-file-name-transforms `((".*" "~/.emacs.d/auto-saves/" t)))
 
-(add-to-list 'safe-local-variable-values
-             '(magit-pull . nil))
+(setq custom-file "~/.emacs.d/custom.el")
+(load custom-file 'noerror)
 
 (setq ediff-window-setup-function 'ediff-setup-windows-plain
       ediff-split-window-function 'split-window-horizontally)
@@ -83,7 +84,8 @@
 (define-prefix-command 'magit-prefix)
 (keymap-global-set "C-x m" 'magit-prefix)
 (define-key magit-prefix (kbd "m") #'magit)
-(define-key magit-prefix (kbd "p") #'magit-pull)
+(define-key magit-prefix (kbd "P") #'magit-pull)
+(define-key magit-prefix (kbd "p") #'magit-push)
 
 ;; -- PLUGINS --
 
@@ -152,6 +154,13 @@
   :init
   (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode)))
 
+(use-package olivetti
+  :custom
+  (olivetti-style 'fancy)
+  (olivetti-body-width 100)
+  :hook
+  (olivetti-mode . (lambda () (display-line-numbers-mode 0))))
+
 (use-package orderless
   :custom
   (completion-styles '(orderless basic))
@@ -208,12 +217,7 @@
       '((python-mode . python-ts-mode)
         (c-mode      . c-ts-mode)
         (c++-mode    . c++-ts-mode)
+	(go-mode     . go-ts-mode)
         (js-mode     . js-ts-mode)
         (typescript-mode . typescript-ts-mode)
         ))
-
-;; (use-package treesit-auto
-;;   :config
-;;   (setq treesit-auto-install 'prompt)
-;;   (treesit-auto-add-to-auto-mode-alist 'all)
-;;   (global-treesit-auto-mode 1))
