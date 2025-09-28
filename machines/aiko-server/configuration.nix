@@ -17,6 +17,7 @@
 
   networking.hostName = "aiko-server"; # Define your hostname.
   networking.networkmanager.enable = true;
+  systemd.network.wait-online.enable = true;
 
   time.timeZone = "Europe/London";
   i18n.defaultLocale = "en_GB.UTF-8";
@@ -61,6 +62,7 @@
   };
 
   virtualisation.docker.enable = true;
+  virtualisation.docker.extraOptions = "--metrics-addr 127.0.0.1:9323 --experimental";
 
   networking.firewall.enable = false;
 
@@ -88,6 +90,56 @@
   services.newt = {
     enable = true;
     environmentFile = "/home/user/newt-env";
+  };
+
+  services.grafana = {
+    enable = true;
+    settings = {
+      server = {
+        # Listening Address
+        http_addr = "0.0.0.0";
+        # and Port
+        http_port = 9000;
+        # Grafana needs to know on which domain and URL it's running
+        # domain = "your.domain";
+        # root_url = "https://your.domain/grafana/"; # Not needed if it is `https://your.domain/`
+        # serve_from_sub_path = true;
+      };
+    };
+  };
+
+  services.prometheus = {
+    enable = true;
+    port = 9001;
+    globalConfig.scrape_interval = "10s"; # "1m"
+    scrapeConfigs = [
+      {
+        job_name = "docker";
+        static_configs = [
+        {targets = ["localhost:9323"];}
+        ];
+      }
+      {
+        job_name = "node";
+        static_configs = [
+          {
+            targets = [
+              "localhost:${toString config.services.prometheus.exporters.node.port}"
+            ];
+          }
+        ];
+      }
+    ];
+
+    exporters = {
+      node = {
+        enable = true;
+        # https://github.com/NixOS/nixpkgs/blob/nixos-24.05/nixos/modules/services/monitoring/prometheus/exporters.nix
+        enabledCollectors = ["systemd"];
+        # /nix/store/zgsw0yx18v10xa58psanfabmg95nl2bb-node_exporter-1.8.1/bin/node_exporter  --help
+        #extraFlags = [ "--collector.ethtool" ];
+      };
+    };
   };
 
   # This value determines the NixOS release from which the default
