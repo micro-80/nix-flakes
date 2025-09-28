@@ -9,7 +9,7 @@
     termux-setup-storage.enable = true;
   };
 
-  terminal.font = "${pkgs.nerd-fonts-jetbrains-mono}/share/fonts/truetype/JetBrainsMonoNerdFontMono-Regular.ttf";
+  terminal.font = "${pkgs.nerd-fonts.jetbrains-mono}/share/fonts/truetype/JetBrainsMonoNerdFontMono-Regular.ttf";
 
   # catppuccin latte
   terminal.colors = {
