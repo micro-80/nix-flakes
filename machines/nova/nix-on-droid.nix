@@ -9,6 +9,11 @@
     termux-setup-storage.enable = true;
   };
 
+  home-manager = {
+    config = ../../home/nova/home.nix;
+    useGlobalPkgs = true;
+  };
+
   terminal.font = "${pkgs.nerd-fonts.jetbrains-mono}/share/fonts/truetype/JetBrainsMonoNerdFontMono-Regular.ttf";
 
   # catppuccin latte
