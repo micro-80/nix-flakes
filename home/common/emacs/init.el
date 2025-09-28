@@ -1,5 +1,10 @@
+;;; init.el --- Startup file for Emacs
+
+;;; Code:
+
 ;; -- OPTIONS --
 ;; This section is a fucking mess - I will clean it once I am happy with it!
+
 (setq inhibit-splash-screen t)
 (setq use-file-dialog nil)
 (menu-bar-mode -1)
@@ -13,9 +18,9 @@
 (global-hl-line-mode)
 (savehist-mode)
 
-(setq mac-option-modifier 'meta)      
+(setq mac-option-modifier 'meta)
 (setq mac-right-option-modifier 'none)
-(setq mac-command-modifier 'super)    
+(setq mac-command-modifier 'super)
 
 (dolist (dir '("~/.emacs.d/backups" "~/.emacs.d/auto-saves"))
   (unless (file-directory-p dir)
@@ -39,7 +44,7 @@
       org-enforce-todo-dependencies t)
 
 (defun my/compile-with-local-env (command)
-  "Run `compile` using the buffer-local environment (from envrc) and /bin/sh."
+  "Run `compile` using the buffer-local environment (from envrc) and /bin/sh with COMMAND."
   (interactive
    (list (compilation-read-command compile-command)))
   (let ((process-environment process-environment)
@@ -47,16 +52,14 @@
         (explicit-shell-file-name "/bin/sh")
         (compilation-environment process-environment))
     (compile command)))
-
-(defun my/recompile-with-local-env (command)
+(defun my/recompile-with-local-env ()
   "Run `recompile` using the buffer-local environment (from envrc) and /bin/sh."
-  (interactive
-   (list (compilation-read-command compile-command)))
+  (interactive)
   (let ((process-environment process-environment)
         (shell-file-name "/bin/sh")
         (explicit-shell-file-name "/bin/sh")
         (compilation-environment process-environment))
-    (recompile command)))
+    (recompile)))
 
 (defvar-local my/notes-folder "~/Notes")
 (defvar-local my/journal-folder "~/Notes/Journal/")
@@ -221,3 +224,7 @@
         (js-mode     . js-ts-mode)
         (typescript-mode . typescript-ts-mode)
         ))
+
+(provide 'init)
+
+;;; init.el ends here
