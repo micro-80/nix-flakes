@@ -9,25 +9,14 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-darwin = {
-      url = "github:LnL7/nix-darwin";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    nix-on-droid = {
-      url = "github:nix-community/nix-on-droid";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = inputs @ {
     nixpkgs,
     nixos-hardware,
     home-manager,
-    nix-darwin,
-    nix-on-droid,
     ...
   }: {
-    formatter.aarch64-darwin = nixpkgs.legacyPackages.aarch64-darwin.alejandra;
     formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
 
     # TODO: clean up duplication
@@ -50,44 +39,6 @@
             home-manager.users.user = import ./home/aiko-server/home.nix;
           }
         ];
-      };
-    };
-
-    darwinConfigurations = {
-      "frank" = nix-darwin.lib.darwinSystem {
-        system = "aarch64-darwin";
-        specialArgs = {inherit inputs;};
-        modules = [
-          ./machines/frank/darwin.nix
-
-          home-manager.darwinModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.user = import ./home/frank/home.nix;
-          }
-        ];
-      };
-      "UKR4C7RQ747H" = nix-darwin.lib.darwinSystem {
-        system = "aarch64-darwin";
-        specialArgs = {inherit inputs;};
-        modules = [
-          ./machines/work/darwin.nix
-
-          home-manager.darwinModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.mgn25 = import ./home/work/home.nix;
-          }
-        ];
-      };
-    };
-
-    nixOnDroidConfigurations = {
-      nova = nix-on-droid.lib.nixOnDroidConfiguration {
-        pkgs = import nixpkgs {system = "aarch64-linux";};
-        modules = [./machines/nova/nix-on-droid.nix];
       };
     };
   };

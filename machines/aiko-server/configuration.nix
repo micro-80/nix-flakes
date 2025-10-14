@@ -46,7 +46,7 @@
     isNormalUser = true;
     description = "user";
     extraGroups = ["docker" "networkmanager" "wheel"];
-    packages = with pkgs; [picard];
+    packages = with pkgs; [beets picard];
     shell = pkgs.zsh;
   };
 
@@ -116,7 +116,7 @@
       {
         job_name = "docker";
         static_configs = [
-        {targets = ["localhost:9323"];}
+          {targets = ["localhost:9323"];}
         ];
       }
       {
